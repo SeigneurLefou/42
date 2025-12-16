@@ -1,0 +1,80 @@
+NAME = push_swap.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
+# DIRECTORY
+STR = str_utils/
+CONV = conv_utils/
+MEM = mem_utils/
+COMP = comp_utils/
+PUT = put_utils/
+PS = ps_utils/
+BUILD = build/
+
+SRC = $(COMP)ft_isascii.c\
+	$(COMP)ft_isdigit.c\
+	$(COMP)ft_isalpha.c\
+	$(COMP)ft_isprint.c\
+	$(COMP)ft_isalnum.c\
+	$(COMP)ft_isvalid.c\
+	$(COMP)ft_isdouble.c\
+	$(CONV)ft_toupper.c\
+	$(CONV)ft_tolower.c\
+	$(CONV)ft_atoi.c\
+	$(CONV)ft_antoi.c\
+	$(CONV)ft_itoa.c\
+	$(MEM)ft_memcpy.c\
+	$(MEM)ft_memmove.c\
+	$(MEM)ft_memchr.c\
+	$(MEM)ft_bzero.c\
+	$(MEM)ft_memcmp.c\
+	$(MEM)ft_memset.c\
+	$(MEM)ft_calloc.c\
+	$(PUT)ft_putchar_fd.c\
+	$(PUT)ft_putstr_fd.c\
+	$(PUT)ft_putendl_fd.c\
+	$(PUT)ft_putnbr_fd.c\
+	$(STR)ft_strnstr.c\
+	$(STR)ft_strlen.c\
+	$(STR)ft_strdup.c\
+	$(STR)ft_strncmp.c\
+	$(STR)ft_strrchr.c\
+	$(STR)ft_substr.c\
+	$(STR)ft_strjoin.c\
+	$(STR)ft_sstrjoin.c\
+	$(STR)ft_strmapi.c\
+	$(STR)ft_striteri.c\
+	$(STR)ft_strtrim.c\
+	$(STR)ft_strlcpy.c\
+	$(STR)ft_strchr.c\
+	$(STR)ft_strichr.c\
+	$(STR)ft_strlcat.c\
+	$(STR)ft_split.c\
+	$(PS)push_swap.c\
+
+OBJ = $(SRC:%.c=$(BUILD)%.o)
+
+all : $(NAME) 
+
+$(NAME) : $(OBJ)
+	ar crs $(NAME) $(OBJ)
+
+$(BUILD)%.o : %.c
+	mkdir -p $(BUILD)
+	mkdir -p $(BUILD)$(STR)
+	mkdir -p $(BUILD)$(MEM)
+	mkdir -p $(BUILD)$(PUT)
+	mkdir -p $(BUILD)$(COMP)
+	mkdir -p $(BUILD)$(CONV)
+	mkdir -p $(BUILD)$(PS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean : 
+	rm -f $(OBJ)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
+
+.PHONY: all clean fclean re

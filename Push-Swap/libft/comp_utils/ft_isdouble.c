@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isdouble.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
+/*   Updated: 2025/12/16 11:21:04 by lchamard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../libft.h"
+
+int ft_isdouble(int *numbers)
+{
+	int	start;
+	int	i;
+
+	start = 0;
+	i = 1;
+	while (numbers[start])
+	{
+		while (numbers[i])
+		{
+			if (numbers[i] == numbers[start])
+				return (1);
+			i++;
+		}
+		start++;
+		i = start + 1;
+	}
+	return (0);
+}
