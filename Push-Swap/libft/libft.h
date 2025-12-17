@@ -23,7 +23,8 @@ int	ft_isalnum(int c);
 int	ft_isdigit(int c);
 int	ft_isalpha(int c);
 int	ft_isprint(int c);
-int ft_isvalid(const char *numbers, int	*start);
+int ft_isvalid(const char *numbers);
+int ft_isvalid_start(const char *numbers, int	*start);
 int ft_isdouble(int *numbers);
 
 // ============================================================================
@@ -32,7 +33,7 @@ int ft_isdouble(int *numbers);
 
 char	**ft_split(char const *s, char c);
 char	*ft_sstrjoin(int argc, char **argv);
-char	*ft_strchr(char *s, int c);
+int		ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
 int		ft_strichr(char c, char *str, size_t start);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
