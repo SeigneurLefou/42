@@ -4,6 +4,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# include <stdio.h>
+
 // === CONVERSION =============================================================
 
 int		ft_toupper(int c);
@@ -21,7 +23,7 @@ int	ft_isalnum(int c);
 int	ft_isdigit(int c);
 int	ft_isalpha(int c);
 int	ft_isprint(int c);
-int ft_isvalid(const char *numbers, int	start);
+int ft_isvalid(const char *numbers, int	*start);
 int ft_isdouble(int *numbers);
 
 // ============================================================================
@@ -34,7 +36,7 @@ char	*ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
 int		ft_strichr(char c, char *str, size_t start);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);

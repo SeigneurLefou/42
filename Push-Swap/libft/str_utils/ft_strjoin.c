@@ -6,45 +6,50 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:18:54 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/16 11:33:24 by lchamard         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:01:35 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-static char	*to_fill(char *filler, const char *s1, const char *s2)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (s1[i])
-	{
-		filler[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		filler[i] = s2[j];
-		i++;
-		j++;
-	}
-	return (filler);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
+static void	*ft_alloc_char(char *s1, char *s2)
 {
 	size_t	len;
-	char	*joinstr;
+	char	*res;
 
 	if (!s1 && !s2)
 		return (NULL);
-	len = ft_strlen(s1);
-	len += ft_strlen(s2);
-	joinstr = ft_calloc(len + 1, sizeof(char));
+	len = 0;
+	if (s1)
+		len += ft_strlen(s1);
+	if (s2)
+		len += ft_strlen(s2);
+	res = ft_calloc(len + 1, sizeof(char));
+	return (res);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*joinstr;
+	size_t	i;
+	size_t	j;
+
+	joinstr = ft_alloc_char(s1, s2);
 	if (!joinstr)
 		return (NULL);
-	to_fill(joinstr, s1, s2);
+	i = 0;
+	while (s1 && s1[i])
+	{
+		joinstr[i] = s1[i];
+		i++;
+	}
+	free(s1);
+	j = 0;
+	while (s2 && s2[j])
+	{
+		joinstr[i] = s2[j];
+		i++;
+		j++;
+	}
 	return (joinstr);
 }
