@@ -76,6 +76,8 @@ int	*ft_parsing(int argc, char **argv)
 	if (!args)
 		return (NULL);
 	len = ft_count_int(args);
+	if (!len)
+		return (NULL);
 	result = ft_split_int(len, args);
 	if (!result)
 		return (NULL);

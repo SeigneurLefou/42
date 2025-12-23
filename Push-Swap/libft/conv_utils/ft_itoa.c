@@ -31,10 +31,8 @@ static int	ft_count(int nb)
 
 static char	*ft_alloc(long int nb)
 {
-	int		i;
 	char	*res;
 
-	i = 0;
 	res = ft_calloc(ft_count(nb) + 1, sizeof (char));
 	if (!res)
 	{
