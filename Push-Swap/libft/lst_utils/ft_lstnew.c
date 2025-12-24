@@ -7,6 +7,6 @@ t_list	*ft_lstnew(int content)
 	new_list = ft_calloc(1, sizeof(t_list));
 	if (!new_list)
 		return (NULL);
-	new_list.value = content;
+	new_list->value = content;
 	return (new_list);
 }

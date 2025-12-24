@@ -13,13 +13,16 @@ all : makelib
 
 build: makelib
 	$(CC) $(CFLAGS) $(INLCUDE) main.c $(LIB_DR)$(LIB_FL) -o $(NAME)
+	@echo "Creation du binaire $(NAME)"
 clean : 
 	@make -C $(LIB_DR) clean
-	rm -Rf $(BUILD)
+	@rm -Rf $(BUILD)
+	@echo "Suppression du dossier $(BUILD)"
 
 fclean : clean
 	@make -C $(LIB_DR) fclean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Suppression de $(NAME)"
 
 re : fclean all build
 

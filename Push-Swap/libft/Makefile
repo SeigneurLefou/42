@@ -8,6 +8,7 @@ CONV = conv_utils/
 MEM = mem_utils/
 COMP = comp_utils/
 PUT = put_utils/
+LST = lst_utils/
 PS = ps_utils/
 BUILD = build/
 
@@ -51,30 +52,44 @@ SRC = $(COMP)ft_isascii.c\
 	$(STR)ft_strichr.c\
 	$(STR)ft_strlcat.c\
 	$(STR)ft_split.c\
-	$(PS)push_swap.c\
+	$(LST)ft_lstadd_back.c\
+	$(LST)ft_lstadd_front.c\
+	$(LST)ft_lstlast.c\
+	$(LST)ft_lstsize.c\
+	$(LST)ft_lstnew.c\
+	$(LST)ft_lstdelone.c\
+	$(LST)ft_lstiter.c\
+	$(LST)ft_lstclear.c\
+	$(LST)ft_lstmap.c\
+	$(PS)push_swap.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
 all : $(NAME) 
 
 $(NAME) : $(OBJ)
-	ar crs $(NAME) $(OBJ)
+	@ar crs $(NAME) $(OBJ)
+	@echo "Creation de la librairie $(NAME)"
 
 $(BUILD)%.o : %.c
-	mkdir -p $(BUILD)
-	mkdir -p $(BUILD)$(STR)
-	mkdir -p $(BUILD)$(MEM)
-	mkdir -p $(BUILD)$(PUT)
-	mkdir -p $(BUILD)$(COMP)
-	mkdir -p $(BUILD)$(CONV)
-	mkdir -p $(BUILD)$(PS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(BUILD)
+	@mkdir -p $(BUILD)$(STR)
+	@mkdir -p $(BUILD)$(MEM)
+	@mkdir -p $(BUILD)$(PUT)
+	@mkdir -p $(BUILD)$(COMP)
+	@mkdir -p $(BUILD)$(CONV)
+	@mkdir -p $(BUILD)$(PS)
+	@mkdir -p $(BUILD)$(LST)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compilation de $< en $@"
 
 clean : 
-	rm -f $(OBJ)
+	@rm -Rf $(BUILD)
+	@echo "Suppression du dossier build"
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Suppression de $(NAME)"
 
 re : fclean all
 
