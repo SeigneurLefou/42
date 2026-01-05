@@ -38,6 +38,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(PUT)ft_putstr_fd.c\
 	$(PUT)ft_putendl_fd.c\
 	$(PUT)ft_putnbr_fd.c\
+	$(PUT)ft_putnbr_endl.c\
 	$(STR)ft_strnstr.c\
 	$(STR)ft_strlen.c\
 	$(STR)ft_strdup.c\
@@ -63,7 +64,9 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstiter.c\
 	$(LST)ft_lstclear.c\
 	$(LST)ft_lstmap.c\
+	$(LST)ft_lstisdouble.c\
 	$(PS)ft_intslen.c\
+	$(PS)ft_longslen.c\
 	$(PS)push_swap.c\
 	$(PS)ft_swap.c
 

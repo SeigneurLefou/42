@@ -1,6 +1,6 @@
 #include "../libft.h"
 
-t_list	*ft_lstnew(int content)
+t_list	*ft_lstnew(long content)
 {
 	t_list	*new_list;
 

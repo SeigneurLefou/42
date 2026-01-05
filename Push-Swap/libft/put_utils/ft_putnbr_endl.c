@@ -11,19 +11,20 @@
 /* ************************************************************************** */
 #include "../libft.h"
 
-void	ft_putnbr_fd(long nb, int fd)
+void	ft_putnbr_endl(long nb)
 {
 	if (nb < 0)
 	{
 		if (nb == LONG_MIN)
 		{
-			ft_putstr_fd("-9223372036854775808", fd);
+			ft_putstr_fd("-9223372036854775808", 1);
 			return ;
 		}
-		ft_putchar_fd('-', fd);
+		ft_putchar_fd('-', 1);
 		nb *= -1;
 	}
 	if (nb > 9)
-		ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd((nb % 10) + '0', fd);
+		ft_putnbr_fd(nb / 10, 1);
+	ft_putchar_fd((nb % 10) + '0', 1);
+	ft_putchar_fd('\n', 1);
 }

@@ -12,7 +12,7 @@
 
 # include "../libft.h"
 
-long ft_antol(char *args, int *i)
+long ft_antol(char *args, size_t *i)
 {
 	long	res;
 	int	sign;

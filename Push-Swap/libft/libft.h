@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 # include <stdio.h>
 
@@ -13,8 +14,8 @@ int		ft_tolower(int c);
 char	*ft_itoa(int nb);
 int		ft_atoi(char *nptr);
 long	ft_atol(char *nptr);
-int 	ft_antoi(char *args, int *i);
-long 	ft_antol(char *args, int *i);
+int 	ft_antoi(char *args, size_t *i);
+long 	ft_antol(char *args, size_t *i);
 
 // ============================================================================
 
@@ -56,7 +57,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
-void	ft_putnbr_fd(int nb, int fd);
+void	ft_putnbr_fd(long nb, int fd);
+void	ft_putnbr_endl(long nb);
 void	ft_putendl_fd(char *str, int fd);
 
 // ============================================================================
@@ -77,26 +79,29 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 
 typedef struct	s_list
 {
-	int		value;
+	long			value;
 	struct s_list	*next;
 }				t_list;
 
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(long content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
-void	ft_lstdelone(t_list *lst, void (*del)(int));
-void	ft_lstiter(t_list *lst, void (*f)(int));
-void	ft_lstclear(t_list **lst, void (*del)(int));
-t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
+void	ft_lstdelone(t_list *lst, void (*del)(long));
+void	ft_lstiter(t_list *lst, void (*f)(long));
+void	ft_lstclear(t_list **lst, void (*del)(long));
+t_list	*ft_lstmap(t_list *lst, long (*f)(long), void (*del)(long));
+int 	ft_lstisdouble(t_list *numbers);
 
 // ============================================================================
 
 // === PUSH SWAP ==============================================================
 
 size_t	ft_intslen(const int *list);
-long		*ft_parsing(int argc, char **argv);
+size_t	ft_longslen(const long *list);
+t_list	*ft_parsing(int argc, char **argv);
+//void	swap(t_list *stack);
 void	sa(t_list *a);
 
 // ============================================================================

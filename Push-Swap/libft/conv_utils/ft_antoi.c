@@ -12,7 +12,7 @@
 
 # include "../libft.h"
 
-int ft_antoi(char *args, int *i)
+int ft_antoi(char *args, size_t *i)
 {
 	int	res;
 	int	sign;

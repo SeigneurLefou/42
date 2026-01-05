@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstisdouble.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 14:54:28 by lchamard          #+#    #+#             */
-/*   Updated: 2025/10/28 12:50:00 by lchamard         ###   ########.fr       */
+/*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
+/*   Updated: 2025/12/18 11:25:37 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../libft.h"
 
-void	ft_putnbr_fd(long nb, int fd)
+int ft_lstisdouble(t_list *numbers)
 {
-	if (nb < 0)
+	t_list	*start;
+	t_list	*comp;
+
+	start = numbers;
+	comp = numbers->next;
+	while (start->next)
 	{
-		if (nb == LONG_MIN)
+		while (comp)
 		{
-			ft_putstr_fd("-9223372036854775808", fd);
-			return ;
+			if (comp->value == start->value)
+				return (1);
+			comp = comp->next;
 		}
-		ft_putchar_fd('-', fd);
-		nb *= -1;
+		start = start->next;
+		comp = start->next;
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd((nb % 10) + '0', fd);
+	return (0);
 }

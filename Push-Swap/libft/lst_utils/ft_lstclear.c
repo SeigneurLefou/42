@@ -1,6 +1,6 @@
 #include "../libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(int))
+void	ft_lstclear(t_list **lst, void (*del)(long))
 {
 	t_list	*tmp;
 	t_list	*last;

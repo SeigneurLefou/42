@@ -12,13 +12,13 @@
 
 #include "../libft.h"
 
-static long	*ft_split_int(int nbel, char *args)
+/*static long	*ft_split_int(size_t nbel, char *args)
 {
 	long	*result;
 	int	i;
 	int	j;
 
-	result = ft_calloc(nbel, sizeof(int));
+	result = ft_calloc(nbel, sizeof(long));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -26,7 +26,7 @@ static long	*ft_split_int(int nbel, char *args)
 	while (args[i])
 	{
 		result[j] = ft_antol(args, &i);
-		if (-2147483648 > result[j] || result[j] > 2147483647)
+		if (LONG_MIN > result[j] || result[j] > LONG_MAX)
 		{
 			free(result);
 			return (NULL);
@@ -34,6 +34,31 @@ static long	*ft_split_int(int nbel, char *args)
 		j++;
 	}
 	if (ft_isdouble(result))
+		return (NULL);
+	return (result);
+}*/
+
+static t_list	*ft_split_int(char *args)
+{
+	t_list	*result;
+	t_list	*tmp;
+	size_t		i;
+	size_t		j;
+
+	i = 0;
+	j = 0;
+	while (args[i])
+	{
+		tmp = ft_lstnew(ft_antol(args, &i));
+		if (LONG_MIN > tmp->value || tmp->value > LONG_MAX)
+			return (NULL);
+		if (j > 0)
+			ft_lstadd_back(&result, tmp);
+		else
+			result->value = tmp->value;
+		j++;
+	}
+	if (ft_lstisdouble(result))
 		return (NULL);
 	return (result);
 }
@@ -68,15 +93,12 @@ int	ft_invalid_input(int argc, char **argv, char *validity_str)
 	return (0);
 }
 
-long	*ft_parsing(int argc, char **argv)
+t_list	*ft_parsing(int argc, char **argv)
 {
-	int		len;
-	long	*result;
 	char	*args;
 	char	*validity_str;
+	t_list	*result;
 
-	len = 0;
-	result = NULL;
 	validity_str = "-+ \t0123456789";
 	if (!argc || !argv)
 		return (NULL);
@@ -85,11 +107,10 @@ long	*ft_parsing(int argc, char **argv)
 	args = ft_sstrjoin(argc, argv);
 	if (!args)
 		return (NULL);
-	len = ft_count_int(args, validity_str);
-	if (!len)
-		return (NULL);
-	result = ft_split_int(len, args);
-	if (!result)
+	if (!ft_count_int(args, validity_str))
+			return (NULL);
+	result = ft_split_int(args);
+	if (!(result))
 		return (NULL);
 	return (result);
 }
