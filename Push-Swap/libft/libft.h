@@ -93,7 +93,9 @@ t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
 
 // === PUSH SWAP ==============================================================
 
-int	*ft_parsing(int argc, char **argv);
+size_t	ft_intslen(const int *list);
+int		*ft_parsing(int argc, char **argv);
+void	sa(t_list *a);
 
 // ============================================================================
 

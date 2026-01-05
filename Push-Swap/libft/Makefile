@@ -61,7 +61,9 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstiter.c\
 	$(LST)ft_lstclear.c\
 	$(LST)ft_lstmap.c\
-	$(PS)push_swap.c
+	$(PS)ft_intslen.c\
+	$(PS)push_swap.c\
+	$(PS)ft_swap.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
