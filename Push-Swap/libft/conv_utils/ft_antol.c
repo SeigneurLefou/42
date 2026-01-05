@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_antol.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 11:16:35 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:09:11 by lchamard         ###   ########.fr       */
+/*   Created: 2025/12/16 11:22:16 by lchamard          #+#    #+#             */
+/*   Updated: 2025/12/18 11:19:50 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+# include "../libft.h"
 
-int ft_strchr(char *s, int c)
+long ft_antol(char *args, int *i)
 {
-	if ((char)c == '\0')
-		return (0);
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return (1);
-	return (0);
+	long	res;
+	int	sign;
+
+	res = 0;
+	sign = 1;
+	while (args[*i] == ' ' || (9 <= args[*i] && args[*i] <= 13))
+		(*i)++;
+	if (args[*i] == '-' || args[*i] == '+')
+	{
+		if (args[*i] == '-')
+			sign *= -1;
+		(*i)++;
+	}
+	while ('0' <= args[*i] && args[*i] <= '9')
+	{
+		res = res * 10 + (args[*i] - '0');
+		(*i)++;
+	}
+	return (sign * res);
+	
 }

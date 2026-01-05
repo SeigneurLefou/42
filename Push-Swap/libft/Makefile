@@ -25,6 +25,8 @@ SRC = $(COMP)ft_isascii.c\
 	$(CONV)ft_atoi.c\
 	$(CONV)ft_antoi.c\
 	$(CONV)ft_itoa.c\
+	$(CONV)ft_atol.c\
+	$(CONV)ft_antol.c\
 	$(MEM)ft_memcpy.c\
 	$(MEM)ft_memmove.c\
 	$(MEM)ft_memchr.c\

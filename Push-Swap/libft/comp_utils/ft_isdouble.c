@@ -6,13 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/16 11:21:04 by lchamard         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:25:37 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int ft_isdouble(int *numbers)
+int ft_isdouble(long *numbers)
 {
 	int	start;
 	int	i;

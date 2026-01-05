@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 11:16:35 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:09:11 by lchamard         ###   ########.fr       */
+/*   Created: 2025/10/14 14:28:12 by lchamard          #+#    #+#             */
+/*   Updated: 2025/12/18 11:19:39 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-
-int ft_strchr(char *s, int c)
+long	ft_atol(const char *nptr)
 {
-	if ((char)c == '\0')
-		return (0);
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return (1);
-	return (0);
+	long	res;
+	int	i;
+	int	sign;
+
+	res = 0;
+	i = 0;
+	sign = 1;
+	while (nptr[i] == ' ' || (9 <= nptr[i] && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while ('0' <= nptr[i] && nptr[i] <= '9')
+	{
+		res = res * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (sign * res);
 }

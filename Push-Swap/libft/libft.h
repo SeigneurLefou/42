@@ -12,7 +12,9 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_itoa(int nb);
 int		ft_atoi(char *nptr);
+long	ft_atol(char *nptr);
 int 	ft_antoi(char *args, int *i);
+long 	ft_antol(char *args, int *i);
 
 // ============================================================================
 
@@ -23,9 +25,9 @@ int	ft_isalnum(int c);
 int	ft_isdigit(int c);
 int	ft_isalpha(int c);
 int	ft_isprint(int c);
-int ft_isvalid(const char *numbers);
-int ft_isvalid_start(const char *numbers, int	*start);
-int ft_isdouble(int *numbers);
+int ft_isvalid(const char *numbers, char *validity_str);
+int ft_isvalid_start(const char *numbers, int	*start, char *validity_str);
+int ft_isdouble(long *numbers);
 
 // ============================================================================
 
@@ -94,7 +96,7 @@ t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
 // === PUSH SWAP ==============================================================
 
 size_t	ft_intslen(const int *list);
-int		*ft_parsing(int argc, char **argv);
+long		*ft_parsing(int argc, char **argv);
 void	sa(t_list *a);
 
 // ============================================================================

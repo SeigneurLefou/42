@@ -2,8 +2,10 @@
 
 int main(int argc, char **argv)
 {
-	int	*res;
-	int	i;
+	long	*res;
+	int		i;
+	t_list	*stacka;
+	t_list	*stackb;
 
 	if (argc < 2)
 	{
@@ -16,16 +18,21 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	i = 0;
-	while (res[i])
+	while (i < ft_longslen(res))
 	{
 		ft_putnbr_fd(res[i], 1);
 		ft_putchar_fd('\n', 1);
 		i++;
 	}
+	// i = ft_longslen(res) - 1;
+	i--;
+	stacka = ft_lstnew(res[i]);
 	while (i > 0)
 	{
-		
 		i--;
+		stackb = ft_lstnew(res[i]);
+		ft_lstadd_front(&stacka, stackb);
+		stacka = stackb;
 	}
-
+	return (0);
 }
