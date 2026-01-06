@@ -6,37 +6,11 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:44:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/05 15:10:59 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/06 10:49:45 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
-
-/*static long	*ft_split_int(size_t nbel, char *args)
-{
-	long	*result;
-	int	i;
-	int	j;
-
-	result = ft_calloc(nbel, sizeof(long));
-	if (!result)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (args[i])
-	{
-		result[j] = ft_antol(args, &i);
-		if (LONG_MIN > result[j] || result[j] > LONG_MAX)
-		{
-			free(result);
-			return (NULL);
-		}
-		j++;
-	}
-	if (ft_isdouble(result))
-		return (NULL);
-	return (result);
-}*/
 
 static t_list	*ft_split_int(char *args)
 {
@@ -55,7 +29,7 @@ static t_list	*ft_split_int(char *args)
 		if (j > 0)
 			ft_lstadd_back(&result, tmp);
 		else
-			result->value = tmp->value;
+			result = ft_lstnew(tmp->value);
 		j++;
 	}
 	if (ft_lstisdouble(result))

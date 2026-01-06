@@ -101,8 +101,21 @@ int 	ft_lstisdouble(t_list *numbers);
 size_t	ft_intslen(const int *list);
 size_t	ft_longslen(const long *list);
 t_list	*ft_parsing(int argc, char **argv);
-//void	swap(t_list *stack);
+void	ft_swap(t_list *stack);
+void	ss(t_list *a, t_list *b);
 void	sa(t_list *a);
+void	sb(t_list *b);
+void	ft_rotate(t_list *stack);
+void	rr(t_list *a, t_list *b);
+void	ra(t_list *a);
+void	rb(t_list *b);
+void	ft_reverse_rotate(t_list *stack);
+void	rrr(t_list *a, t_list *b);
+void	rra(t_list *a);
+void	rrb(t_list *b);
+void	ft_push (t_list *stack);
+void	pa(t_list *a);
+void	pb(t_list *b);
 
 // ============================================================================
 

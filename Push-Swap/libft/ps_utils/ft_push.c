@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 11:41:15 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/06 11:41:18 by lchamard         ###   ########.fr       */
+/*   Created: 2026/01/06 11:27:41 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/06 11:40:48 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-
-void	ft_swap(t_list	*stack)
+void	ft_push(t_list *to_pop, t_list *to_push)
 {
-	int	tmp;
+	t_list	new_node;
 
-	if (ft_lstsize(stack) < 2)
-		return ;
-	tmp = stack->value;
-	stack->value = stack->next->value; 
-	stack->next->value = tmp; 
+	new_node = ft_lstnew(to_pop->value);
+	ft_lstadd_front(new_node, to_push);
+	ft_lstdelone(to_pop, ft_dellst);
 }
 
-void	ss(t_list	*a, t_list	*b)
+void	pa(t_list *stackb, t_list *stacka)
 {
-	ft_swap(a);
-	ft_swap(b);
+	ft_push(stackb, stacka);
 }
 
-void	sa(t_list	*a)
+void	pb(t_list *stacka, t_list *stackb)
 {
-	ft_swap(a);
-}
-
-void	sb(t_list	*b)
-{
-	ft_swap(b);
+	ft_push(stacka, stackb);
 }
