@@ -1,6 +1,6 @@
 NAME = push_swap.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 # DIRECTORY
 STR = str_utils/
@@ -68,9 +68,9 @@ SRC = $(COMP)ft_isascii.c\
 	$(PS)ft_intslen.c\
 	$(PS)ft_longslen.c\
 	$(PS)push_swap.c\
-	$(PS)ft_swap.c
-	$(PS)ft_push.c
-	$(PS)ft_rotate.c
+	$(PS)ft_swap.c\
+	$(PS)ft_push.c\
+	$(PS)ft_rotate.c\
 	$(PS)ft_reverse_rotate.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)

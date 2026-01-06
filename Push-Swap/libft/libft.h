@@ -84,15 +84,15 @@ typedef struct	s_list
 }				t_list;
 
 t_list	*ft_lstnew(long content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
-void	ft_lstdelone(t_list *lst, void (*del)(long));
-void	ft_lstiter(t_list *lst, void (*f)(long));
+void	ft_lstadd_front(t_list **lst, t_list **new);
+t_list	*ft_lstlast(t_list **lst);
+void	ft_lstadd_back(t_list **lst, t_list **new);
+int		ft_lstsize(t_list **lst);
+void	ft_lstdelone(t_list **lst, void (*del)(long));
+void	ft_lstiter(t_list **lst, void (*f)(long));
 void	ft_lstclear(t_list **lst, void (*del)(long));
-t_list	*ft_lstmap(t_list *lst, long (*f)(long), void (*del)(long));
-int 	ft_lstisdouble(t_list *numbers);
+t_list	*ft_lstmap(t_list **lst, long (*f)(long), void (*del)(long));
+int 	ft_lstisdouble(t_list **numbers);
 
 // ============================================================================
 
@@ -101,21 +101,21 @@ int 	ft_lstisdouble(t_list *numbers);
 size_t	ft_intslen(const int *list);
 size_t	ft_longslen(const long *list);
 t_list	*ft_parsing(int argc, char **argv);
-void	ft_swap(t_list *stack);
-void	ss(t_list *a, t_list *b);
-void	sa(t_list *a);
-void	sb(t_list *b);
-void	ft_rotate(t_list *stack);
-void	rr(t_list *a, t_list *b);
-void	ra(t_list *a);
-void	rb(t_list *b);
-void	ft_reverse_rotate(t_list *stack);
-void	rrr(t_list *a, t_list *b);
-void	rra(t_list *a);
-void	rrb(t_list *b);
-void	ft_push (t_list *stack);
-void	pa(t_list *a);
-void	pb(t_list *b);
+void	ft_swap(t_list **stack);
+void	ss(t_list **stacka, t_list **stackb);
+void	sa(t_list **stacka);
+void	sb(t_list **stackb);
+void	ft_rotate(t_list **stack);
+void	rr(t_list **stacka, t_list **stackb);
+void	ra(t_list **stacka);
+void	rb(t_list **stackb);
+void	ft_reverse_rotate(t_list **stack);
+void	rrr(t_list **stacka, t_list **stackb);
+void	rra(t_list **stacka);
+void	rrb(t_list **stackb);
+void	ft_push(t_list **to_pop, t_list **to_push);
+void	pa(t_list **stackb, t_list **stacka);
+void	pb(t_list **stacka, t_list **stackb);
 
 // ============================================================================
 

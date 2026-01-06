@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reverse.c                                       :+:      :+:    :+:   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:41:03 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/06 11:54:26 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:50:50 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_reverse(t_list *stack)
+void	ft_rotate(t_list **stack)
 {
-	t_list	new_node;
+	t_list	*c_first;
+	t_list	*last;
 
-	new_node = ft_lstnew(stack->value);
-	ft_lstadd_back(new_node, stack);
-	ft_lstdelone(stack, ft_dellst);
+	c_first = *stack;
+	last = ft_lstlast(stack);
+	if (!(*stack) || ft_lstsize(stack) < 2)
+		return ;
+	*stack = (*stack)->next;
+	c_first->next = NULL;
+	last->next = c_first;
 }
 
-void	ra(t_list *stacka)
+void	ra(t_list **stacka)
 {
-	ft_reverse(stacka);
+	ft_rotate(stacka);
 }
 
-void	rb(t_list *stackb)
+void	rb(t_list **stackb)
 {
-	ft_reverse(stackb);
+	ft_rotate(stackb);
 }
 
-void	ra(t_list *stacka, t_list *stackb)
+void	rr(t_list **stacka, t_list **stackb)
 {
-	ft_reverse(stacka);
-	ft_reverse(stackb);
+	ft_rotate(stacka);
+	ft_rotate(stackb);
 }

@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:44:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/06 10:49:45 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:08:26 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static t_list	*ft_split_int(char *args)
 		if (LONG_MIN > tmp->value || tmp->value > LONG_MAX)
 			return (NULL);
 		if (j > 0)
-			ft_lstadd_back(&result, tmp);
+			ft_lstadd_back(&result, &tmp);
 		else
 			result = ft_lstnew(tmp->value);
 		j++;
 	}
-	if (ft_lstisdouble(result))
+	if (ft_lstisdouble(&result))
 		return (NULL);
 	return (result);
 }

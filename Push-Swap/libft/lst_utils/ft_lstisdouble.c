@@ -6,19 +6,19 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:25:37 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/06 17:05:21 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int ft_lstisdouble(t_list *numbers)
+int ft_lstisdouble(t_list **numbers)
 {
 	t_list	*start;
 	t_list	*comp;
 
-	start = numbers;
-	comp = numbers->next;
+	start = *numbers;
+	comp = (*numbers)->next;
 	while (start->next)
 	{
 		while (comp)
