@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:27:41 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/07 16:40:13 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:53:15 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_push(t_list **to_pop, t_list **to_push)
 	if (!to_pop)
 		return ;
 	new_node = ft_lstnew((*to_pop)->value);
+	new_node->index = (*to_pop)->index;
 	ft_lstadd_front(to_push, &new_node);
 	*to_pop = (*to_pop)->next;
 }

@@ -81,7 +81,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@ar crs $(NAME) $(OBJ)
-	@echo "Creation de la librairie $(NAME)"
+	@echo "LIBRAIRY : $(NAME)"
 
 $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)
@@ -97,11 +97,11 @@ $(BUILD)%.o : %.c
 
 clean : 
 	@rm -Rf $(BUILD)
-	@echo "Suppression du dossier build"
+	@echo "DELETE : $(BUILD)"
 
 fclean : clean
 	@rm -f $(NAME)
-	@echo "Suppression de $(NAME)"
+	@echo "DELETE : $(NAME)"
 
 re : fclean all
 
