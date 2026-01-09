@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstisdouble.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/09 11:26:52 by lchamard         ###   ########.fr       */
+/*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/06 17:05:21 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
 
-static void	print_stack(t_list **stacka, t_list **stackb)
+int ft_lstisdouble(t_list **numbers)
 {
-	ft_putendl_fd("A\n_", 1);
-	ft_lstshow(stacka);
-	ft_putendl_fd("\nB\n_", 1);
-	ft_lstshow(stackb);
-}
+	t_list	*start;
+	t_list	*comp;
 
-int main(int argc, char **argv)
-{
-	t_list	*stacka;
-	t_list	*stackb;
-
-	(void)stackb;
-	if (argc < 2)
+	start = *numbers;
+	comp = (*numbers)->next;
+	while (start->next)
 	{
-		return (1);
+		while (comp)
+		{
+			if (comp->value == start->value)
+				return (1);
+			comp = comp->next;
+		}
+		start = start->next;
+		comp = start->next;
 	}
-	stacka = ft_parsing(argc, argv);
-	stackb = NULL;
-	if (!stacka)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
-	}
-	stair_sort(&stacka, &stackb);
-	print_stack(&stacka, &stackb);
 	return (0);
 }

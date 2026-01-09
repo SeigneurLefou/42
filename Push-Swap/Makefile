@@ -2,8 +2,8 @@ NAME = push_swap
 CC = cc
 BUILD = build/
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDE = -I push_swap.h
-LIB_DR = libft/
+INCLUDES = -I includes/
+LIB_DR = src/
 LIB_FL = push_swap.a
 
 makelib :
@@ -12,7 +12,7 @@ makelib :
 all : makelib
 
 build: makelib
-	$(CC) $(CFLAGS) $(INLCUDE) main.c $(LIB_DR)$(LIB_FL) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) main.c $(LIB_DR)$(LIB_FL) -o $(NAME)
 	@echo "Creation du binaire $(NAME)"
 clean : 
 	@make -C $(LIB_DR) clean

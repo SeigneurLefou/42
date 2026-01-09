@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/09 11:26:52 by lchamard         ###   ########.fr       */
+/*   Created: 2025/10/14 11:28:15 by lchamard          #+#    #+#             */
+/*   Updated: 2025/10/17 17:30:46 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libps.h"
 
-static void	print_stack(t_list **stacka, t_list **stackb)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	ft_putendl_fd("A\n_", 1);
-	ft_lstshow(stacka);
-	ft_putendl_fd("\nB\n_", 1);
-	ft_lstshow(stackb);
-}
+	size_t	i;
 
-int main(int argc, char **argv)
-{
-	t_list	*stacka;
-	t_list	*stackb;
-
-	(void)stackb;
-	if (argc < 2)
+	i = 0;
+	while (i < n && (s1[i] || s2[i]))
 	{
-		return (1);
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-	stacka = ft_parsing(argc, argv);
-	stackb = NULL;
-	if (!stacka)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
-	}
-	stair_sort(&stacka, &stackb);
-	print_stack(&stacka, &stackb);
 	return (0);
 }
