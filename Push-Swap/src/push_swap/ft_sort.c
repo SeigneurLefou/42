@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:35:39 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/09 19:32:58 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/12 11:40:56 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	ft_lstisinf_ind(t_list **stack, long min)
 	return (1);
 }
 
-/*
 static int	ft_lstisinf(t_list **stack, long min)
 {
 	t_list	*tmp;
@@ -40,7 +39,6 @@ static int	ft_lstisinf(t_list **stack, long min)
 	}
 	return (1);
 }
-*/
 
 static int	ft_lstissup(t_list **stack, long max)
 {
@@ -79,7 +77,33 @@ static void	give_index(t_list **stacka)
 	}
 }
 
-void	insert_sort(t_list **stacka, t_list **stackb)
+void	insert_sort_a(t_list **stacka, t_list **stackb)
+{
+	int		len_stacka;
+	long	search_int;
+	t_list	*tmp;
+
+	while (*stacka)
+	{
+		len_stacka = ft_lstsize(stacka);
+		tmp = *stacka;
+		search_int = tmp->value;
+		while (tmp->next && !ft_lstisinf(&tmp, search_int))
+		{
+			tmp = tmp->next;
+			search_int = tmp->value;
+		}
+		if (ft_lstsize(&tmp) < len_stacka / 2)
+			while ((*stacka)->value != search_int)
+				rra(stacka);
+		else
+			while ((*stacka)->value != search_int)
+				ra(stacka);
+		pb(stacka, stackb);
+	}
+}
+
+void	insert_sort_b(t_list **stacka, t_list **stackb)
 {
 	int		len_stackb;
 	long	search_int;
@@ -112,9 +136,20 @@ void	stair_sort(t_list **stacka, t_list **stackb)
 	int	i;
 
 	(void)stackb;
-	chunck_nb = 4;// ft_lstsize(stacka) / 40; // Pour 100 entre 5 et 8 marche bien, et pour 500 je cherche
-	if (ft_lstsize(stacka) < chunck_nb)
-		chunck_nb = ft_lstsize(stacka) / 2;
+	chunck_nb = 10;// ft_lstsize(stacka) / 40; // Pour 100 entre 5 et 8 marche bien, et pour 500 je cherche
+	if (ft_lstsize(stacka) == 2)
+	{
+		if ((*stacka)->value > (*stacka)->next->value)
+			sa(stacka);
+		return ;
+	}	
+	if (ft_lstsize(stacka) < 20)
+	{	
+		insert_sort_a(stacka, stackb);
+		while (*stackb)
+			pa(stackb, stacka);
+		return ;
+	}
 	i = chunck_nb;
 	chunck_el = ft_lstsize(stacka) / chunck_nb;
 	give_index(stacka);
@@ -129,10 +164,10 @@ void	stair_sort(t_list **stacka, t_list **stackb)
 		}
 		if (i < (chunck_nb))
 		{
-			while ((*stacka)->index != i * chunck_el)
+			while ((*stacka)->index != (i * chunck_el))
 				ra(stacka);
 		}
-		insert_sort(stacka, stackb);
+		insert_sort_b(stacka, stackb);
 		i--;
 	}
 	while (((chunck_nb - 1) * chunck_el) < ft_lstsize(stacka))
@@ -141,69 +176,7 @@ void	stair_sort(t_list **stacka, t_list **stackb)
 			pb(stacka, stackb);
 		rra(stacka);
 	}
-	/*
-	while ((*stacka)->index != (i + 1) * chunck_el)
+	while ((*stacka)->index != (i * chunck_el + 1))
 		ra(stacka);
-	*/
-	insert_sort(stacka, stackb);
+	insert_sort_b(stacka, stackb);
 }
-/*
-static int	ft_lstissorted(t_list **stack)
-{
-	t_list	*tmp;
-
-	tmp = *stack;
-	while (tmp->next)
-	{
-		if (tmp->value < tmp->next->value)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-static t_list	**ft_presort(t_list **stacka)
-{}
-
-static int	ft_lstisinvsorted(t_list **stack)
-{
-	t_list	*tmp;
-
-	tmp = *stack;
-	while (tmp->next)
-	{
-		if (tmp->value > tmp->next->value)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-void	insert_sort(t_list **stacka, t_list **stackb)
-{
-	int		len_stacka;
-	long	search_int;
-	t_list	*tmp;
-
-	while (*stacka || !ft_lstissorted(stackb))
-	{
-		len_stacka = ft_lstsize(stacka);
-		tmp = *stacka;
-		search_int = tmp->value;
-		while (tmp->next && !ft_lstisinf(&tmp, search_int))
-		{
-			tmp = tmp->next;
-			search_int = tmp->value;
-		}
-		if (ft_lstsize(&tmp) < len_stacka / 2)
-			while ((*stacka)->value != search_int)
-				rra(stacka);
-		else
-			while ((*stacka)->value != search_int)
-				ra(stacka);
-		pb(stacka, stackb);
-	}
-	while (*stackb)
-		pa(stackb, stacka);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/09 19:01:14 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/12 10:36:29 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	stair_sort(&stacka, &stackb);
+	ft_lstshow(&stacka);
 	return (0);
 }
