@@ -4,16 +4,17 @@ BUILD = build/
 CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I includes/
 LIB_DR = src/
-LIB_FL = push_swap.a
+LIB_FL = $(LIB_DR)push_swap.a
 
-makelib :
+$(LIB_FL) :
 	@make -C $(LIB_DR)
 
-all : makelib
-
-build: makelib
-	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(LIB_DR)$(LIB_FL) -o $(NAME)
+$(NAME) : $(LIB_FL)
+	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(LIB_FL) -o $(NAME)
 	@echo "BINARY : $(NAME)"
+
+all : $(NAME)
+
 clean : 
 	@make -C $(LIB_DR) clean
 	@rm -Rf $(BUILD)
@@ -24,6 +25,6 @@ fclean : clean
 	@rm -f $(NAME)
 	@echo "DELETE : $(NAME)"
 
-re : fclean all build
+re : fclean all
 
-.PHONY: all clean fclean re build
+.PHONY: all clean fclean makelib re build

@@ -77,8 +77,6 @@ SRC = $(COMP)ft_isascii.c\
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
-all : $(NAME) 
-
 $(NAME) : $(OBJ)
 	@ar crs $(NAME) $(OBJ)
 	@echo "LIBRAIRY : $(NAME)"
@@ -105,4 +103,6 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean fclean
+all : $(NAME) 
+
+.PHONY: all clean fclean re
