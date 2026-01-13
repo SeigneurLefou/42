@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 09:33:29 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 static int	ft_inset(char c, char const *set)
 {

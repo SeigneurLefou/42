@@ -6,13 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:22:16 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/16 17:50:06 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:59:08 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libps.h"
+#include "push_swap.h"
 
-int ft_antoi(char *args, size_t *i)
+int	ft_antoi(char *args, size_t *i)
 {
 	int	res;
 	int	sign;
@@ -33,5 +33,4 @@ int ft_antoi(char *args, size_t *i)
 		(*i)++;
 	}
 	return (sign * res);
-	
 }

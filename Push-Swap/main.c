@@ -6,23 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/12 13:06:46 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:45:13 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
-/*
-static void	print_stack(t_list **stacka, t_list **stackb)
-{
-	ft_putendl_fd("A\n_", 1);
-	ft_lstshow(stacka);
-	ft_putendl_fd("\nB\n_", 1);
-	ft_lstshow(stackb);
-}
-*/
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*stacka;
 	t_list	*stackb;

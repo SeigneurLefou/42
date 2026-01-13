@@ -6,11 +6,11 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:41:15 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/07 16:38:37 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:54:58 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_swap(t_list	**stack)
 {
@@ -19,8 +19,8 @@ void	ft_swap(t_list	**stack)
 	if (!(stack) || ft_lstsize(stack) < 2)
 		return ;
 	tmp = (*stack)->value;
-	(*stack)->value = (*stack)->next->value; 
-	(*stack)->next->value = tmp; 
+	(*stack)->value = (*stack)->next->value;
+	(*stack)->next->value = tmp;
 }
 
 void	ss(t_list	**a, t_list	**b)

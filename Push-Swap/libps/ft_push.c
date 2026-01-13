@@ -6,20 +6,23 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:27:41 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/09 14:53:15 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:10:14 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_push(t_list **to_pop, t_list **to_push)
 {
 	t_list	*new_node;
+	t_list	*tmp;
 
 	if (!to_push && to_pop)
 	{
 		*to_push = ft_lstnew((*to_pop)->value);
-		*to_pop = (*to_pop)->next;
+		tmp = (*to_pop)->next;
+		free(*to_pop);
+		*to_pop = tmp;
 		return ;
 	}
 	if (!to_pop)
@@ -27,7 +30,9 @@ void	ft_push(t_list **to_pop, t_list **to_push)
 	new_node = ft_lstnew((*to_pop)->value);
 	new_node->index = (*to_pop)->index;
 	ft_lstadd_front(to_push, &new_node);
-	*to_pop = (*to_pop)->next;
+	tmp = (*to_pop)->next;
+	free(*to_pop);
+	*to_pop = tmp;
 }
 
 void	pa(t_list **stackb, t_list **stacka)

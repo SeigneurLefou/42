@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/29 14:53:08 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {

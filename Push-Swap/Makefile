@@ -66,6 +66,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstclear.c\
 	$(LST)ft_lstmap.c\
 	$(LST)ft_lstshow.c\
+	$(LST)ft_lstfind.c\
 	$(LST)ft_lstisdouble.c\
 	$(PS)ft_intslen.c\
 	$(PS)ft_longslen.c\
@@ -74,7 +75,10 @@ SRC = $(COMP)ft_isascii.c\
 	$(PS)ft_push.c\
 	$(PS)ft_rotate.c\
 	$(PS)ft_reverse_rotate.c\
-	$(PS)ft_sort.c
+	$(PS)ft_stairs_sort.c\
+	$(PS)ft_insert_sort.c\
+	$(PS)ft_give_index.c\
+	$(PS)ft_sqrt.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 

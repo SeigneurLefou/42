@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 12:50:00 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_putnbr_fd(long nb, int fd)
 {

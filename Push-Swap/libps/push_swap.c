@@ -6,18 +6,18 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:44:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/08 11:25:49 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:13:55 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
 static t_list	*ft_split_int(char *args)
 {
 	t_list	*result;
 	t_list	*tmp;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -37,7 +37,7 @@ static t_list	*ft_split_int(char *args)
 	return (result);
 }
 
-static int ft_count_int(char *args, char *validity_str)
+static int	ft_count_int(char *args, char *validity_str)
 {
 	int		i;
 	int		len;
@@ -82,7 +82,7 @@ t_list	*ft_parsing(int argc, char **argv)
 	if (!args)
 		return (NULL);
 	if (!ft_count_int(args, validity_str))
-			return (NULL);
+		return (NULL);
 	result = ft_split_int(args);
 	if (!(result))
 		return (NULL);

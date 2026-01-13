@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 17:09:01 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 static int	ft_count(char const *s, char c)
 {

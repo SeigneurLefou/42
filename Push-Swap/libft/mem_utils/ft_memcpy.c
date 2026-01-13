@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 12:07:42 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_bzero(void *s, size_t n)
 {

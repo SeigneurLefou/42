@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/27 10:07:04 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/27 10:03:27 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {

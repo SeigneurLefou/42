@@ -6,13 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/06 17:05:21 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:06:45 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
-int ft_lstisdouble(t_list **numbers)
+int	ft_lstisdouble(t_list **numbers)
 {
 	t_list	*start;
 	t_list	*comp;

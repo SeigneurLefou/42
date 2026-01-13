@@ -6,16 +6,16 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:22:16 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:19:50 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:59:29 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libps.h"
+#include "push_swap.h"
 
-long ft_antol(char *args, size_t *i)
+long	ft_antol(char *args, size_t *i)
 {
 	long	res;
-	int	sign;
+	int		sign;
 
 	res = 0;
 	sign = 1;
@@ -33,5 +33,4 @@ long ft_antol(char *args, size_t *i)
 		(*i)++;
 	}
 	return (sign * res);
-	
 }

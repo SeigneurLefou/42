@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/27 18:50:27 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

@@ -1,11 +1,21 @@
-#ifndef LIBCONV_H
-# define LIBCONV_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/13 16:01:46 by lchamard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-
-# include <stdio.h>
 
 // === CONVERSION =============================================================
 
@@ -14,21 +24,21 @@ int		ft_tolower(int c);
 char	*ft_itoa(int nb);
 int		ft_atoi(char *nptr);
 long	ft_atol(char *nptr);
-int 	ft_antoi(char *args, size_t *i);
-long 	ft_antol(char *args, size_t *i);
+int		ft_antoi(char *args, size_t *i);
+long	ft_antol(char *args, size_t *i);
 
 // ============================================================================
 
 // === COMPARAISON ============================================================
 
-int	ft_isascii(int c);
-int	ft_isalnum(int c);
-int	ft_isdigit(int c);
-int	ft_isalpha(int c);
-int	ft_isprint(int c);
-int ft_isvalid(const char *numbers, char *validity_str);
-int ft_isvalid_start(const char *numbers, int	*start, char *validity_str);
-int ft_isdouble(long *numbers);
+int		ft_isascii(int c);
+int		ft_isalnum(int c);
+int		ft_isdigit(int c);
+int		ft_isalpha(int c);
+int		ft_isprint(int c);
+int		ft_isvalid(const char *numbers, char *validity_str);
+int		ft_isvalid_start(const char *numbers, int	*start, char *validity_str);
+int		ft_isdouble(long *numbers);
 
 // ============================================================================
 
@@ -77,7 +87,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 
 // === CHAIN LIST =============================================================
 
-typedef struct	s_list
+typedef struct s_list
 {
 	long			value;
 	int				index;
@@ -93,8 +103,11 @@ void	ft_lstdelone(t_list **lst, void (*del)(long));
 void	ft_lstiter(t_list **lst, void (*f)(long));
 void	ft_lstclear(t_list **lst, void (*del)(long));
 t_list	*ft_lstmap(t_list **lst, long (*f)(long), void (*del)(long));
-int 	ft_lstisdouble(t_list **numbers);
+int		ft_lstisdouble(t_list **numbers);
 void	ft_lstshow(t_list **stack);
+int		ft_lstisinf_ind(t_list **stack, long min);
+int		ft_lstisinf(t_list **stack, long min);
+int		ft_lstissup(t_list **stack, long min);
 
 // ============================================================================
 
@@ -119,6 +132,10 @@ void	rrb(t_list **stackb);
 void	ft_push(t_list **to_pop, t_list **to_push);
 void	pa(t_list **stackb, t_list **stacka);
 void	pb(t_list **stacka, t_list **stackb);
+void	give_index(t_list **stacka);
+int		ft_sqrt(int number);
+void	insert_sort_a(t_list **stacka, t_list **stackb);
+void	insert_sort_b(t_list **stacka, t_list **stackb);
 
 // ============================================================================
 

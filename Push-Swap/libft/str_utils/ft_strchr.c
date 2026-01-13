@@ -6,13 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 11:16:35 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:09:11 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:03:08 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
-int ft_strchr(char *s, int c)
+int	ft_strchr(char *s, int c)
 {
 	if ((char)c == '\0')
 		return (0);

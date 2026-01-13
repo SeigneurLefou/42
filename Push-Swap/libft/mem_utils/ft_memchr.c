@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/17 17:39:51 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 void	*ft_memchr(void *s, int c, size_t n)
 {

@@ -6,11 +6,11 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:18:54 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/17 11:01:35 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:18:17 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
 static void	*ft_alloc_char(char *s1, char *s2)
 {

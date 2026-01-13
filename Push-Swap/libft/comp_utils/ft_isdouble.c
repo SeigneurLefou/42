@@ -6,13 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:20:59 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:25:37 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:59:49 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "push_swap.h"
 
-int ft_isdouble(long *numbers)
+int	ft_isdouble(long *numbers)
 {
 	int	start;
 	int	i;

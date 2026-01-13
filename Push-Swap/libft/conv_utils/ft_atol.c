@@ -6,15 +6,15 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:28:12 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/18 11:19:39 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:57:41 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 long	ft_atol(const char *nptr)
 {
 	long	res;
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
 
 	res = 0;
 	i = 0;

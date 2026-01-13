@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/22 15:00:34 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libps.h"
+#include "push_swap.h"
 
 void	ft_putendl_fd(char *str, int fd)
 {
