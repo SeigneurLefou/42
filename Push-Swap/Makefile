@@ -96,6 +96,7 @@ $(BUILD)%.o : %.c
 
 clean : 
 	@rm -Rf $(BUILD)
+	@rm -Rf libft/$(BUILD)
 	@echo "DELETE : $(BUILD)"
 
 fclean : clean
