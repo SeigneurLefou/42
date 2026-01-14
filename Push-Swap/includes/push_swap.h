@@ -136,6 +136,7 @@ void	give_index(t_list **stacka);
 int		ft_sqrt(int number);
 void	insert_sort_a(t_list **stacka, t_list **stackb);
 void	insert_sort_b(t_list **stacka, t_list **stackb);
+void    ft_optimal_move(t_list **stack, int min_index, int max_index);
 
 // ============================================================================
 

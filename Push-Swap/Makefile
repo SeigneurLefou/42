@@ -78,6 +78,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(PS)ft_stairs_sort.c\
 	$(PS)ft_insert_sort.c\
 	$(PS)ft_give_index.c\
+	$(PS)ft_optimal_move.c\
 	$(PS)ft_sqrt.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
