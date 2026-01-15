@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/13 16:01:46 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/15 12:02:12 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+
+# include <stdio.h>
 
 // === CONVERSION =============================================================
 
@@ -136,7 +138,7 @@ void	give_index(t_list **stacka);
 int		ft_sqrt(int number);
 void	insert_sort_a(t_list **stacka, t_list **stackb);
 void	insert_sort_b(t_list **stacka, t_list **stackb);
-void    ft_optimal_move(t_list **stack, int min_index, int max_index);
+int		ft_optimal_move(t_list **stack, int min_index, int max_index);
 
 // ============================================================================
 

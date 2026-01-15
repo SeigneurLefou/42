@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:35:39 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/14 12:16:44 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/15 12:04:06 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,29 @@ static int	exception(t_list **stacka, t_list **stackb)
 	return (0);
 }
 
-static void	chuncker_a(t_list **stacka, t_list **stackb,
+static void	chuncker(t_list **stacka, t_list **stackb,
 				int chunck_nb, int chunck_el)
 {
 	int	i;
-	int	last_num;
-
-	i = chunck_nb;
-	last_num = ft_lstsize(stacka) % chunck_nb;
-	while (1 < i)
-	{
-		while (((chunck_nb - i + 1) * chunck_el) < ft_lstsize(stacka))
-		{
-			if (((i - 1) * chunck_el + last_num) <= (*stackb)->index
-				&& (*stackb)->index < (i * chunck_el + last_num))
-				pa(stackb, stacka);
-			else
-				rb(stackb);
-		}
-		i--;
-	}
-	while (*stacka)
-		pa(stackb, stacka);
-}
-
-static void	chuncker_b(t_list **stacka, t_list **stackb,
-				int chunck_nb, int chunck_el)
-{
-	int	i;
+	int	opti_move;
 
 	i = 1;
 	while (i < chunck_nb)
 	{
-		printf("sizeb : [%d], i*chunck_el : [%d]\n", ft_lstsize())
+		opti_move = ft_optimal_move(stacka,
+				(i - 1) * chunck_el, i * chunck_el - 1);
 		while (ft_lstsize(stackb) < (i * chunck_el))
 		{
 			if (((i - 1) * chunck_el) <= (*stacka)->index
 				&& (*stacka)->index < (i * chunck_el))
 				pb(stacka, stackb);
 			else
-				rra(stacka);
+			{
+				if (opti_move)
+					ra(stacka);
+				else
+					rra(stacka);
+			}
 		}
 		i++;
 	}
@@ -85,18 +68,11 @@ void	stair_sort(t_list **stacka, t_list **stackb)
 
 	if (exception(stacka, stackb))
 		return ;
-	chunck_nb = ft_sqrt(ft_lstsize(stacka)) / 8;
+	chunck_nb = ft_sqrt(ft_lstsize(stacka)) / 2;
 	if (chunck_nb < 2)
 		chunck_nb = 2;
 	give_index(stacka);
 	chunck_el = ft_lstsize(stacka) / chunck_nb;
-	chuncker_b(stacka, stackb, chunck_nb, chunck_el);
-	chunck_nb *= 2;
-	chunck_el = ft_lstsize(stackb) / chunck_nb;
-	chuncker_a(stacka, stackb, chunck_nb, chunck_el);
-	chunck_nb *= 2;
-	chunck_el = ft_lstsize(stackb) / chunck_nb;
-	chuncker_b(stacka, stackb, chunck_nb, chunck_el);
+	chuncker(stacka, stackb, chunck_nb, chunck_el);
 	insert_sort_b(stacka, stackb);
 }
-
