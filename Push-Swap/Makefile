@@ -82,7 +82,7 @@ SRC = $(COMP)ft_isascii.c\
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
-$(NAME) : $(OBJ)
+$(NAME) : $(OBJ) main.c
 	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) -o $(NAME)
 	@echo "BINARY : $(NAME)"
 
