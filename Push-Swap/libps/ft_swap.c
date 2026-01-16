@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:41:15 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/13 14:54:58 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:31:40 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	ft_swap(t_list	**stack)
 {
-	int	tmp;
+	t_list	*tmp1;
+	t_list	*tmp2;
 
 	if (!(stack) || ft_lstsize(stack) < 2)
 		return ;
-	tmp = (*stack)->value;
-	(*stack)->value = (*stack)->next->value;
-	(*stack)->next->value = tmp;
+	tmp1 = (*stack);
+	tmp2 = (*stack)->next;
+	tmp1->next = tmp2->next;
+	tmp2->next = tmp1;
+	(*stack) = tmp2;
 }
 
 void	ss(t_list	**a, t_list	**b)
