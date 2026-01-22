@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/13 15:03:31 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/13 15:03:32 by lchamard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pipex.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(long))
+{
+	t_list	*tmp;
+	t_list	*last;
+
+	if (!lst || !del || !*lst)
+		return ;
+	tmp = *lst;
+	while (tmp)
+	{
+		last = tmp;
+		tmp = tmp->next;
+		del(last->value);
+		free(last);
+	}
+	*lst = NULL;
+}
