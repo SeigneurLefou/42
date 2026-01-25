@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	infile = get_file(argv[1]);
 	printf("infile : [%s]\n", infile);
 	cmd = ft_split(argv[2], ' ');
-	cmd = ft_append(cmd, infile);
+	//cmd = ft_append(cmd, infile);
 	execve("/bin/ls", cmd, NULL);
 	return (0);
 }
