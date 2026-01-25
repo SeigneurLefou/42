@@ -13,6 +13,39 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+static void	three_sort(t_list **stacka)
+{
+	if (ft_lstissup(stacka, (*stacka)->value))
+		ra(stacka);
+	if ((*stacka)->next->value > (*stacka)->next->next->value
+		&& (*stacka)->value < (*stacka)->next->next->value)
+		rra(stacka);
+	if ((*stacka)->value > (*stacka)->next->value)
+		sa(stacka);
+	if ((*stacka)->value > (*stacka)->next->next->value)
+		rra(stacka);
+}
+
+static void	little_sort(t_list **stacka, t_list **stackb)
+{
+	int	surplus_stacka;
+
+	surplus_stacka = ft_lstsize(stacka) - 3;
+	give_index(stacka);
+	while (ft_lstsize(stackb) < surplus_stacka)
+	{
+		if ((*stacka)->index < surplus_stacka)
+			pb(stacka, stackb);
+		else
+			ra(stacka);
+	}
+	if ((*stackb)->index == 0)
+		sb(stackb);
+	three_sort(stacka);
+	while (*stackb)
+		pa(stackb, stacka);
+}
+
 static int	exception(t_list **stacka, t_list **stackb)
 {
 	if (ft_lstsize(stacka) == 2)
@@ -21,23 +54,9 @@ static int	exception(t_list **stacka, t_list **stackb)
 			sa(stacka);
 		return (1);
 	}
-	if (ft_lstsize(stacka) == 3)
+	else if (ft_lstsize(stacka) < 6)
 	{
-		if (ft_lstissup(stacka, (*stacka)->value))
-			ra(stacka);
-		if ((*stacka)->next->value > (*stacka)->next->next->value && (*stacka)->value < (*stacka)->next->next->value)
-		 	rra(stacka);
-		if ((*stacka)->value > (*stacka)->next->value)
-			sa(stacka);
-		if ((*stacka)->value > (*stacka)->next->next->value)
-			rra(stacka);
-		return (1);
-	}
-	if (ft_lstsize(stacka) < 6)
-	{
-		insert_sort_a(stacka, stackb);
-		while (*stackb)
-			pa(stackb, stacka);
+		little_sort(stacka, stackb);
 		return (1);
 	}
 	return (0);
@@ -68,15 +87,13 @@ static void	chuncker(t_list **stacka, t_list **stackb, int chunck_nb)
 void	stair_sort(t_list **stacka, t_list **stackb)
 {
 	int	chunck_nb;
-	int	chunck_el;
 
 	if (exception(stacka, stackb))
 		return ;
-	chunck_nb = 10 + (1 * (ft_lstsize(stacka) / 25)); //ft_sqrt(ft_lstsize(stacka));
+	chunck_nb = 10 + (1 * (ft_lstsize(stacka) / 25));
 	if (chunck_nb < 2)
 		chunck_nb = 2;
 	give_index(stacka);
-	chunck_el = ft_lstsize(stacka) / chunck_nb;
 	chuncker(stacka, stackb, chunck_nb);
 	insert_sort_b(stacka, stackb);
 }
