@@ -15,8 +15,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <sys/wait.h>
+# include <string.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <errno.h>
 
 # include <stdio.h>
 
@@ -69,11 +73,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 // === PUT ====================================================================
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *str, int fd);
-void	ft_putnbr_fd(long nb, int fd);
-void	ft_putnbr_endl(long nb);
-void	ft_putendl_fd(char *str, int fd);
+int		ft_putchar_fd(char c, int fd);
+int		ft_putstr_fd(char *str, int fd);
+int		ft_putvoids_fd(size_t ptr, int fd);
+int		ft_putnbr_fd(int nb, int fd);
+int		ft_putnbrbase_fd(size_t nb, char *base, int fd);
+int		ft_put_unsigned_nbr_fd(unsigned int nb, int fd);
+int		ft_putendl_fd(char *str, int fd);
 
 // ============================================================================
 
@@ -156,6 +162,14 @@ char	*give_next_line(char *buffer);
 char	*get_next_line(int fd);
 char	*get_file(char *path);
 
-//
+// ============================================================================
+
+// === PRINTF =================================================================
+
+typedef unsigned int	t_unint;
+
+int		ft_printf(const char *format, ...);
+
+// ============================================================================
 
 #endif

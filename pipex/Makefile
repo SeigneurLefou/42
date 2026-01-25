@@ -13,6 +13,7 @@ PUT = libft/put_utils/
 LST = libft/lst_utils/
 GNL = gnl/
 BUILD = build/
+PF = printf/
 
 SRC = $(COMP)ft_isascii.c\
 	$(COMP)ft_isdigit.c\
@@ -40,6 +41,9 @@ SRC = $(COMP)ft_isascii.c\
 	$(PUT)ft_putendl_fd.c\
 	$(PUT)ft_putnbr_fd.c\
 	$(PUT)ft_putnbr_endl.c\
+	$(PUT)ft_putvoids_fd.c\
+	$(PUT)ft_putunsigned_nbr_fd.c\
+	$(PUT)ft_putnbrbase_fd.c\
 	$(STR)ft_strnstr.c\
 	$(STR)ft_strlen.c\
 	$(STR)ft_strdup.c\
@@ -69,7 +73,8 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstshow.c\
 	$(LST)ft_lstfind.c\
 	$(LST)ft_lstisdouble.c\
-	$(GNL)get_next_line.c
+	$(GNL)get_next_line.c\
+	$(PF)ft_printf.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
@@ -86,6 +91,7 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(CONV)
 	@mkdir -p $(BUILD)$(LST)
 	@mkdir -p $(BUILD)$(GNL)
+	@mkdir -p $(BUILD)$(PF)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "CC $<\n\t> $@"
 

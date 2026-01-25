@@ -6,22 +6,22 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 14:36:28 by lchamard          #+#    #+#             */
-/*   Updated: 2025/12/16 11:32:46 by lchamard         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:05:56 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_putstr_fd(char *str, int fd)
+int	ft_putstr_fd(char *str, int fd)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	if (!str || fd < 0)
-		return ;
-	while (str[i])
+	if (!str)
 	{
-		ft_putchar_fd(str[i], fd);
-		i++;
+		write(1, "(null)", 6);
+		return (6);
 	}
+	len = ft_strlen(str);
+	write(fd, str, len);
+	return (len);
 }

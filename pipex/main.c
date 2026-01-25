@@ -25,20 +25,20 @@ int	main(int argc, char **argv)
 {
 	char	*infile;
 	char	**cmd;
-	int		i;
+	//int		i;
 
 	(void)argc;
 	if (argc != 5)
 		return (1);	
+	if (access(argv[1], R_OK) == -1)
+	{
+		strerror(EPERM);
+		return (1);
+	}
 	infile = get_file(argv[1]);
 	printf("infile : [%s]\n", infile);
 	cmd = ft_split(argv[2], ' ');
 	cmd = ft_append(cmd, infile);
-	i = 0;
-	while (cmd[i])
-	{
-		printf("command : [%s]\n", cmd[i]);
-		i++;
-	}
+	execve("/bin/ls", cmd, NULL);
 	return (0);
 }
