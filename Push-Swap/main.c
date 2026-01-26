@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/14 11:15:09 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:25:57 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	stacka = ft_parsing(argc, argv);
-	stackb = NULL;
 	if (!stacka)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
+	stackb = NULL;
 	stair_sort(&stacka, &stackb);
+	ft_lstclear(&stacka, ft_free);
+	ft_lstclear(&stackb, ft_free);
 	return (0);
 }

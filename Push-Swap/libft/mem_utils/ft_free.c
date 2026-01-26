@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/13 15:03:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/26 13:08:11 by lchamard         ###   ########.fr       */
+/*   Created: 2026/01/26 17:19:40 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/26 18:46:19 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstdelone(t_list **lst, void (*del)(void *))
+void	ft_free(void *arg)
 {
-	if (!(*lst) || !del)
-		return ;
-	del(*lst);
-	free(*lst);
+	(void) arg;
 }

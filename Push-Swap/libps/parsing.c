@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/13 15:03:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/26 13:08:11 by lchamard         ###   ########.fr       */
+/*   Created: 2025/12/16 17:44:46 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/26 19:22:31 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstdelone(t_list **lst, void (*del)(void *))
+t_list	*ft_parsing(int argc, char **argv)
 {
-	if (!(*lst) || !del)
-		return ;
-	del(*lst);
-	free(*lst);
+	char	*validity_str;
+	char	*args;
+	t_list	*result;
+
+	validity_str = "-+ \t0123456789";
+	if (!argc || !argv)
+		return (NULL);
+	if (ft_invalid_input(argc, argv, validity_str))
+		return (NULL);
+	args = ft_fuse_argv(argv + 1);
+	if (!ft_count_int(args, validity_str))
+		return (NULL);
+	result = ft_split_int(args);
+	if (!(result))
+		return (NULL);
+	return (result);
 }

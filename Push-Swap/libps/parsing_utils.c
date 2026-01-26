@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 17:44:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/13 16:13:55 by lchamard         ###   ########.fr       */
+/*   Created: 2026/01/26 18:52:44 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/26 19:27:31 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list	*ft_split_int(char *args)
+int	ft_verif_parsing(char *args, t_list **tmp, t_list **result
+		, size_t *i, size_t j)
+{
+	*tmp = ft_lstnew(ft_antol(args, i));
+	if (!tmp)
+		return (0);
+	if (INT_MIN > (long)(*tmp)->value || (long)(*tmp)->value > INT_MAX)
+	{
+		ft_lstclear(tmp, free);
+		return (0);
+	}
+	if (j > 0)
+		ft_lstadd_back(result, tmp);
+	else
+	{
+		*result = ft_lstnew((long)(*tmp)->value);
+		free(*tmp);
+	}
+	return (1);
+}
+
+t_list	*ft_split_int(char *args)
 {
 	t_list	*result;
 	t_list	*tmp;
@@ -23,21 +44,18 @@ static t_list	*ft_split_int(char *args)
 	j = 0;
 	while (args[i])
 	{
-		tmp = ft_lstnew(ft_antol(args, &i));
-		if (INT_MIN > tmp->value || tmp->value > INT_MAX)
-			return (NULL);
-		if (j > 0)
-			ft_lstadd_back(&result, &tmp);
-		else
-			result = ft_lstnew(tmp->value);
+		ft_verif_parsing(args, &tmp, &result, &i, j);
 		j++;
 	}
 	if (ft_lstisdouble(&result))
+	{
+		ft_lstclear(&result, free);
 		return (NULL);
+	}
 	return (result);
 }
 
-static int	ft_count_int(char *args, char *validity_str)
+int	ft_count_int(char *args, char *validity_str)
 {
 	int		i;
 	int		len;
@@ -67,24 +85,15 @@ int	ft_invalid_input(int argc, char **argv, char *validity_str)
 	return (0);
 }
 
-t_list	*ft_parsing(int argc, char **argv)
+char	*ft_fuse_argv(char **argv)
 {
-	char	*args;
-	char	*validity_str;
-	t_list	*result;
+	int		i;
 
-	validity_str = "-+ \t0123456789";
-	if (!argc || !argv)
-		return (NULL);
-	if (ft_invalid_input(argc, argv, validity_str))
-		return (NULL);
-	args = ft_sstrjoin(argc, argv);
-	if (!args)
-		return (NULL);
-	if (!ft_count_int(args, validity_str))
-		return (NULL);
-	result = ft_split_int(args);
-	if (!(result))
-		return (NULL);
-	return (result);
+	i = 0;
+	while (argv[i + 1])
+	{
+		argv[i][ft_strlen(argv[i])] = ' ';
+		i++;
+	}
+	return (argv[0]);
 }

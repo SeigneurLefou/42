@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:35:39 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/16 11:41:09 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/26 19:10:39 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 static void	three_sort(t_list **stacka)
 {
-	if (ft_lstissup(stacka, (*stacka)->value))
+	if (ft_lstissup(stacka, (long)(*stacka)->value))
 		ra(stacka);
-	if ((*stacka)->next->value > (*stacka)->next->next->value
-		&& (*stacka)->value < (*stacka)->next->next->value)
+	if ((long)(*stacka)->next->value > (long)(*stacka)->next->next->value
+		&& (long)(*stacka)->value < (long)(*stacka)->next->next->value)
 		rra(stacka);
-	if ((*stacka)->value > (*stacka)->next->value)
+	if ((long)(*stacka)->value > (long)(*stacka)->next->value)
 		sa(stacka);
-	if ((*stacka)->value > (*stacka)->next->next->value)
+	if ((long)(*stacka)->value > (long)(*stacka)->next->next->value)
 		rra(stacka);
 }
 
@@ -39,9 +39,9 @@ static void	little_sort(t_list **stacka, t_list **stackb)
 		else
 			ra(stacka);
 	}
-	if ((*stackb)->index == 0)
-		sb(stackb);
 	three_sort(stacka);
+	if (*stackb && (*stackb)->index == 0 && ft_lstsize(stackb) > 1)
+		sb(stackb);
 	while (*stackb)
 		pa(stackb, stacka);
 }

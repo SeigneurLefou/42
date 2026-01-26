@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:18:54 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/13 16:18:17 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:44:24 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	*ft_alloc_char(char *s1, char *s2)
 	if (s2)
 		len += ft_strlen(s2);
 	res = ft_calloc(len + 1, sizeof(char));
+	if (!res)
+		return (NULL);
 	return (res);
 }
 
@@ -43,7 +45,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		joinstr[i] = s1[i];
 		i++;
 	}
-	free(s1);
+	if (s1)
+		free(s1);
 	j = 0;
 	while (s2 && s2[j])
 	{

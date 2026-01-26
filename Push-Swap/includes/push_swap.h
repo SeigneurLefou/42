@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/15 12:02:12 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/26 19:06:24 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	*ft_memset(void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
+void	ft_free(void *arg);
 
 // ============================================================================
 
@@ -91,7 +92,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 
 typedef struct s_list
 {
-	long			value;
+	void			*value;
 	int				index;
 	struct s_list	*next;
 }				t_list;
@@ -101,10 +102,9 @@ void	ft_lstadd_front(t_list **lst, t_list **new);
 t_list	*ft_lstlast(t_list **lst);
 void	ft_lstadd_back(t_list **lst, t_list **new);
 int		ft_lstsize(t_list **lst);
-void	ft_lstdelone(t_list **lst, void (*del)(long));
-void	ft_lstiter(t_list **lst, void (*f)(long));
-void	ft_lstclear(t_list **lst, void (*del)(long));
-t_list	*ft_lstmap(t_list **lst, long (*f)(long), void (*del)(long));
+void	ft_lstdelone(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list **lst, void (*f)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
 int		ft_lstisdouble(t_list **numbers);
 void	ft_lstshow(t_list **stack);
 int		ft_lstisinf_ind(t_list **stack, long min);
@@ -118,6 +118,12 @@ int		ft_lstissup(t_list **stack, long min);
 size_t	ft_intslen(const int *list);
 size_t	ft_longslen(const long *list);
 t_list	*ft_parsing(int argc, char **argv);
+int		ft_verif_parsing(char *args, t_list **tmp, t_list **result, size_t *i
+		, size_t j);
+char	*ft_fuse_argv(char **argv);
+int		ft_invalid_input(int argc, char **argv, char *validity_str);
+int		ft_count_int(char *args, char *validity_str);
+t_list	*ft_split_int(char *args);
 void	ft_swap(t_list **stack);
 void	stair_sort(t_list **stacka, t_list **stackb);
 void	ss(t_list **stacka, t_list **stackb);
@@ -136,7 +142,6 @@ void	pa(t_list **stackb, t_list **stacka);
 void	pb(t_list **stacka, t_list **stackb);
 void	give_index(t_list **stacka);
 int		ft_sqrt(int number);
-void	insert_sort_a(t_list **stacka, t_list **stackb);
 void	insert_sort_b(t_list **stacka, t_list **stackb);
 int		ft_optimal_move(t_list **stack, int min_index, int max_index);
 

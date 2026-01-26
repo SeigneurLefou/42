@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 14:47:16 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/13 15:06:34 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/26 19:01:41 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lstisinf_ind(t_list **stack, long min)
 	tmp = *stack;
 	while (tmp)
 	{
-		if (tmp->index == -1 && tmp->value < min)
+		if (tmp->index == -1 && (long)tmp->value < min)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -33,7 +33,7 @@ int	ft_lstisinf(t_list **stack, long min)
 	tmp = *stack;
 	while (tmp)
 	{
-		if (tmp->value < min)
+		if ((long)tmp->value < min)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -47,7 +47,7 @@ int	ft_lstissup(t_list **stack, long max)
 	tmp = *stack;
 	while (tmp)
 	{
-		if (tmp->value > max)
+		if ((long)tmp->value > max)
 			return (0);
 		tmp = tmp->next;
 	}

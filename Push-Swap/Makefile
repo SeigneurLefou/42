@@ -35,6 +35,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(MEM)ft_memcmp.c\
 	$(MEM)ft_memset.c\
 	$(MEM)ft_calloc.c\
+	$(MEM)ft_free.c\
 	$(PUT)ft_putchar_fd.c\
 	$(PUT)ft_putstr_fd.c\
 	$(PUT)ft_putendl_fd.c\
@@ -64,13 +65,13 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstdelone.c\
 	$(LST)ft_lstiter.c\
 	$(LST)ft_lstclear.c\
-	$(LST)ft_lstmap.c\
 	$(LST)ft_lstshow.c\
 	$(LST)ft_lstfind.c\
 	$(LST)ft_lstisdouble.c\
 	$(PS)ft_intslen.c\
 	$(PS)ft_longslen.c\
-	$(PS)push_swap.c\
+	$(PS)parsing.c\
+	$(PS)parsing_utils.c\
 	$(PS)ft_swap.c\
 	$(PS)ft_push.c\
 	$(PS)ft_rotate.c\
