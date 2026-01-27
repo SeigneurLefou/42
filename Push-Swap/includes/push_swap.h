@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/26 19:06:24 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:31:57 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 # include <unistd.h>
 # include <limits.h>
 
-# include <stdio.h>
+typedef struct s_list
+{
+	void			*value;
+	int				index;
+	struct s_list	*next;
+}				t_list;
 
 // === CONVERSION =============================================================
 
@@ -37,6 +42,7 @@ int		ft_isascii(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
+int		ft_issorted(t_list **stack);
 int		ft_isprint(int c);
 int		ft_isvalid(const char *numbers, char *validity_str);
 int		ft_isvalid_start(const char *numbers, int	*start, char *validity_str);
@@ -90,13 +96,6 @@ void	ft_free(void *arg);
 
 // === CHAIN LIST =============================================================
 
-typedef struct s_list
-{
-	void			*value;
-	int				index;
-	struct s_list	*next;
-}				t_list;
-
 t_list	*ft_lstnew(long content);
 void	ft_lstadd_front(t_list **lst, t_list **new);
 t_list	*ft_lstlast(t_list **lst);
@@ -118,8 +117,7 @@ int		ft_lstissup(t_list **stack, long min);
 size_t	ft_intslen(const int *list);
 size_t	ft_longslen(const long *list);
 t_list	*ft_parsing(int argc, char **argv);
-int		ft_verif_parsing(char *args, t_list **tmp, t_list **result, size_t *i
-		, size_t j);
+int		ft_verif_parsing(t_list *tmp, t_list **result, size_t j);
 char	*ft_fuse_argv(char **argv);
 int		ft_invalid_input(int argc, char **argv, char *validity_str);
 int		ft_count_int(char *args, char *validity_str);
@@ -143,6 +141,8 @@ void	pb(t_list **stacka, t_list **stackb);
 void	give_index(t_list **stacka);
 int		ft_sqrt(int number);
 void	insert_sort_b(t_list **stacka, t_list **stackb);
+void	which_rotate(t_list *tmp, t_list **stackb, int len_stackb,
+			long search_int);
 int		ft_optimal_move(t_list **stack, int min_index, int max_index);
 
 // ============================================================================

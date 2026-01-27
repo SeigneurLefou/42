@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:35:39 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/26 19:10:39 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:51:51 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	exception(t_list **stacka, t_list **stackb)
 {
 	if (ft_lstsize(stacka) == 2)
 	{
-		if ((*stacka)->value > (*stacka)->next->value)
+		if ((long)(*stacka)->value > (long)(*stacka)->next->value)
 			sa(stacka);
 		return (1);
 	}

@@ -20,6 +20,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(COMP)ft_isprint.c\
 	$(COMP)ft_isalnum.c\
 	$(COMP)ft_isvalid.c\
+	$(COMP)ft_issorted.c\
 	$(COMP)ft_isdouble.c\
 	$(CONV)ft_toupper.c\
 	$(CONV)ft_tolower.c\

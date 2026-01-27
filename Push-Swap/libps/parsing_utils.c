@@ -6,29 +6,27 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 18:52:44 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/26 19:27:31 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:44:54 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_verif_parsing(char *args, t_list **tmp, t_list **result
-		, size_t *i, size_t j)
+int	ft_verif_parsing(t_list *tmp, t_list **result, size_t j)
 {
-	*tmp = ft_lstnew(ft_antol(args, i));
 	if (!tmp)
 		return (0);
-	if (INT_MIN > (long)(*tmp)->value || (long)(*tmp)->value > INT_MAX)
+	if (INT_MIN > (long)tmp->value || (long)tmp->value > INT_MAX)
 	{
-		ft_lstclear(tmp, free);
+		ft_lstclear(&tmp, ft_free);
 		return (0);
 	}
 	if (j > 0)
-		ft_lstadd_back(result, tmp);
+		ft_lstadd_back(result, &tmp);
 	else
 	{
-		*result = ft_lstnew((long)(*tmp)->value);
-		free(*tmp);
+		*result = ft_lstnew((long)tmp->value);
+		free(tmp);
 	}
 	return (1);
 }
@@ -44,12 +42,14 @@ t_list	*ft_split_int(char *args)
 	j = 0;
 	while (args[i])
 	{
-		ft_verif_parsing(args, &tmp, &result, &i, j);
+		tmp = ft_lstnew(ft_antol(args, &i));
+		if (!ft_verif_parsing(tmp, &result, j))
+			return (NULL);
 		j++;
 	}
 	if (ft_lstisdouble(&result))
 	{
-		ft_lstclear(&result, free);
+		ft_lstclear(&result, ft_free);
 		return (NULL);
 	}
 	return (result);

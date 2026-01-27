@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_issorted.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 14:44:36 by lchamard         ###   ########.fr       */
+/*   Created: 2026/01/27 14:01:33 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/27 14:51:01 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_issorted(t_list **stack)
 {
-	t_list	*stacka;
-	t_list	*stackb;
+	t_list	*tmp;
 
-	if (argc < 2)
-		return (1);
-	stacka = ft_parsing(argc, argv);
-	if (stacka && (ft_lstsize(&stacka) < 2 || ft_issorted(&stacka)))
+	tmp = *stack;
+	while (tmp->next)
 	{
-		ft_lstclear(&stacka, ft_free);
-		return (1);
+		if ((long)tmp->value > (long)tmp->next->value)
+			return (0);
+		tmp = tmp->next;
 	}
-	if (!stacka)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
-	}
-	stackb = NULL;
-	stair_sort(&stacka, &stackb);
-	ft_lstclear(&stacka, ft_free);
-	ft_lstclear(&stackb, ft_free);
-	return (0);
+	return (1);
 }
