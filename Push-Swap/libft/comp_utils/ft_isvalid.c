@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:21:10 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 14:27:24 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:12:53 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ int	ft_isvalid(const char *numbers, char *validity_str)
 		if (!ft_strchr(validity_str + 4, numbers[++i]))
 			return (0);
 	}
-	
 	else if (!ft_strchr(validity_str + 4, numbers[i++]))
 		return (0);
 	while (ft_strchr(validity_str + 4, numbers[i]))
-	i++;
+		i++;
 	if (numbers[i] && !ft_strchr(validity_str + 2, numbers[i]))
 		return (0);
 	return (1);

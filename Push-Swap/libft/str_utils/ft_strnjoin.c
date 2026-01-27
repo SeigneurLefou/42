@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/08 17:17:46 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 16:33:58 by lchamard         ###   ########.fr       */
+/*   Created: 2026/01/27 15:25:19 by lchamard          #+#    #+#             */
+/*   Updated: 2026/01/27 16:12:04 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+char	*ft_strnjoin(char *s1, char *s2, size_t size)
 {
-	t_list	*stacka;
-	t_list	*stackb;
+	char	*joinstr;
+	size_t	i;
+	size_t	j;
 
-	if (argc < 2)
-		return (1);
-	stacka = ft_parsing(argc, argv);
-	if (stacka && (ft_lstsize(&stacka) < 2 || ft_issorted(&stacka)))
+	joinstr = ft_calloc(size + 1, sizeof(char));
+	if (!joinstr)
+		return (NULL);
+	i = 0;
+	while (s1 && s1[i] && i < size)
 	{
-		ft_lstclear(&stacka, ft_free);
-		return (1);
+		joinstr[i] = s1[i];
+		i++;
 	}
-	if (!stacka)
+	if (s1)
+		free(s1);
+	j = 0;
+	while (s2 && s2[j] && i < size)
 	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
+		joinstr[i] = s2[j];
+		i++;
+		j++;
 	}
-	stackb = NULL;
-	stair_sort(&stacka, &stackb);
-	ft_lstclear(&stacka, ft_free);
-	ft_lstclear(&stackb, ft_free);
-	return (0);
+	return (joinstr);
 }

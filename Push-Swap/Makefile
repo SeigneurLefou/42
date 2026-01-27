@@ -1,4 +1,5 @@
 NAME = push_swap
+CHECKER = checker
 CC = cc
 BUILD = build/
 CFLAGS = -Wall -Wextra -Werror -g
@@ -12,6 +13,7 @@ COMP = libft/comp_utils/
 PUT = libft/put_utils/
 LST = libft/lst_utils/
 PS = libps/
+GNL = gnl/
 BUILD = build/
 
 SRC = $(COMP)ft_isascii.c\
@@ -49,6 +51,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(STR)ft_strrchr.c\
 	$(STR)ft_substr.c\
 	$(STR)ft_strjoin.c\
+	$(STR)ft_strnjoin.c\
 	$(STR)ft_sstrjoin.c\
 	$(STR)ft_strmapi.c\
 	$(STR)ft_striteri.c\
@@ -81,13 +84,19 @@ SRC = $(COMP)ft_isascii.c\
 	$(PS)ft_insert_sort.c\
 	$(PS)ft_give_index.c\
 	$(PS)ft_optimal_move.c\
-	$(PS)ft_sqrt.c
+	$(PS)ft_sqrt.c\
+	$(PS)is_command.c\
+	$(GNL)get_next_line.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
 $(NAME) : $(OBJ) main.c
 	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) -o $(NAME)
 	@echo "BINARY : $(NAME)"
+
+$(CHECKER) : $(OBJ) checker.c
+	@$(CC) $(CFLAGS) $(INCLUDES) checker.c $(OBJ) -o $(CHECKER)
+	@echo "BINARY : $(CHECKER)"
 
 $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)
@@ -98,6 +107,7 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(CONV)
 	@mkdir -p $(BUILD)$(PS)
 	@mkdir -p $(BUILD)$(LST)
+	@mkdir -p $(BUILD)$(GNL)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "CC $<\n\t> $@"
 
@@ -108,10 +118,13 @@ clean :
 
 fclean : clean
 	@rm -f $(NAME)
+	@rm -f $(CHECKER)
 	@echo "DELETE : $(NAME)"
 
-re : fclean all
+re : fclean all bonus
 
 all : $(NAME) 
 
-.PHONY: all clean fclean re
+bonus : $(CHECKER)
+
+.PHONY: all clean fclean re bonus
