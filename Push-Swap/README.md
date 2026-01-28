@@ -1,4 +1,4 @@
-This project as been created as part of the 42 curriculum by lchamard.
+*This project as been created as part of the 42 curriculum by lchamard.*
 ---
 # Description
 Push swap is a project in which you must sort a list of numbers provided by the user using two linked lists and a limited number of operations.

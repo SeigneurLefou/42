@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:22:16 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 14:44:16 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:26:24 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ long	ft_antol(char *args, size_t *i)
 		(*i)++;
 	}
 	len = 0;
+	while ('0' == args[*i])
+		(*i)++;
 	while ('0' <= args[*i] && args[*i] <= '9')
 	{
 		res = res * 10 + (args[*i] - '0');

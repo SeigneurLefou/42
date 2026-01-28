@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 18:52:44 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 14:44:54 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/28 12:23:11 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ int	ft_verif_parsing(t_list *tmp, t_list **result, size_t j)
 		return (0);
 	if (INT_MIN > (long)tmp->value || (long)tmp->value > INT_MAX)
 	{
-		ft_lstclear(&tmp, ft_free);
+		if (j > 0)
+			ft_lstadd_back(result, &tmp);
+		else
+		{
+			*result = ft_lstnew((long)tmp->value);
+			free(tmp);
+		}
 		return (0);
 	}
 	if (j > 0)
@@ -44,7 +50,11 @@ t_list	*ft_split_int(char *args)
 	{
 		tmp = ft_lstnew(ft_antol(args, &i));
 		if (!ft_verif_parsing(tmp, &result, j))
+		{
+			if (result)
+				ft_lstclear(&result, ft_free);
 			return (NULL);
+		}
 		j++;
 	}
 	if (ft_lstisdouble(&result))
@@ -64,6 +74,8 @@ int	ft_count_int(char *args, char *validity_str)
 	len = 0;
 	while (args[i])
 	{
+		while (args[i] == ' ')
+			i++;
 		if (!ft_isvalid_start(args, &i, validity_str))
 			return (0);
 		len++;
