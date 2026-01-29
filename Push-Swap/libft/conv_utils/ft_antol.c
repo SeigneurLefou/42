@@ -6,19 +6,16 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 11:22:16 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/28 11:26:24 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:39:46 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_antol(char *args, size_t *i)
+static int	ft_sign(char *args, size_t *i)
 {
-	long	res;
-	int		sign;
-	int		len;
+	int	sign;
 
-	res = 0;
 	sign = 1;
 	while (args[*i] == ' ' || (9 <= args[*i] && args[*i] <= 13))
 		(*i)++;
@@ -28,8 +25,19 @@ long	ft_antol(char *args, size_t *i)
 			sign *= -1;
 		(*i)++;
 	}
+	return (sign);
+}
+
+long	ft_antol(char *args, size_t *i)
+{
+	long	res;
+	int		sign;
+	int		len;
+
+	res = 0;
+	sign = ft_sign(args, i);
 	len = 0;
-	while ('0' == args[*i])
+	while (args[*i] == '0')
 		(*i)++;
 	while ('0' <= args[*i] && args[*i] <= '9')
 	{
@@ -38,6 +46,6 @@ long	ft_antol(char *args, size_t *i)
 		len++;
 	}
 	if (len > 10)
-		return (LONG_MAX);
+		return (999999999999);
 	return (sign * res);
 }

@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:37:41 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 16:49:55 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:16:29 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,14 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-char	*get_file()
+char	*get_file(void)
 {
 	char	*line;
 	char	*res;
 
 	res = NULL;
 	line = get_next_line(0);
-	while(line)
+	while (line)
 	{
 		res = ft_strjoin(res, line);
 		free(line);

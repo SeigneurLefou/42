@@ -6,12 +6,12 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/27 17:15:41 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 10:17:51 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -145,10 +145,10 @@ void	insert_sort_b(t_list **stacka, t_list **stackb);
 void	which_rotate(t_list *tmp, t_list **stackb, int len_stackb,
 			long search_int);
 int		ft_optimal_move(t_list **stack, int min_index, int max_index);
-int	is_swap(char *cmd, t_list **stacka, t_list **stackb);
-int	is_reverse_rotate(char *cmd, t_list **stacka, t_list **stackb);
-int	is_rotate(char *cmd, t_list **stacka, t_list **stackb);
-int	is_push(char *cmd, t_list **stacka, t_list **stackb);
+int		is_swap(char *cmd, t_list **stacka, t_list **stackb);
+int		is_reverse_rotate(char *cmd, t_list **stacka, t_list **stackb);
+int		is_rotate(char *cmd, t_list **stacka, t_list **stackb);
+int		is_push(char *cmd, t_list **stacka, t_list **stackb);
 
 // ============================================================================
 
@@ -162,7 +162,7 @@ char	*while_no_newline(int fd, char *buffer, char *line);
 char	*join_line_with_previous_line(char	*buffer, char *line);
 char	*give_next_line(char *buffer);
 char	*get_next_line(int fd);
-char	*get_file();
+char	*get_file(void);
 
 // ============================================================================
 
