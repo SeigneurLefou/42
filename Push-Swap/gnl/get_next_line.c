@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:37:41 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/29 10:16:29 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:27:35 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@ char	*get_file(void)
 	while (line)
 	{
 		res = ft_strjoin(res, line);
+		if (!is_swap_noexe(line)
+			&& !is_push_noexe(line)
+			&& !is_reverse_rotate_noexe(line)
+			&& !is_rotate_noexe(line))
+		{
+			free(res);
+			free(line);
+			return (NULL);
+		}
 		free(line);
 		line = get_next_line(0);
 	}

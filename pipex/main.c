@@ -21,24 +21,32 @@ char	**ft_append(char **array, char *element)
 	return (result);
 }
 
+void	ft_exec_cmd(char *infile, char *cmd_args) 
+{
+	char	**cmd;
+	char	*path_cmd;
+
+	cmd = ft_split(cmd_args, ' ');
+	cmd = ft_append(cmd, infile);
+	path_cmd = ft_strjoin("/bin/", cmd[0]);
+	execve(path_cmd, cmd, NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	char	*infile;
-	char	**cmd;
-	//int		i;
+	//int		pipe_fd[2];
+	int 	fdio[2];
 
-	(void)argc;
 	if (argc != 5)
 		return (1);	
+	fdio[0] = open(argv[1], O_RDONLY);
+	fdio[1] = open(argv[4], O_RDONLY);
 	if (access(argv[1], R_OK) == -1)
-	{
-		strerror(EPERM);
 		return (1);
-	}
-	infile = get_file(argv[1]);
+	infile = get_file(fdio[0]);
+	//outfile = get_file(fdio[1])
 	printf("infile : [%s]\n", infile);
-	cmd = ft_split(argv[2], ' ');
-	//cmd = ft_append(cmd, infile);
-	execve("/bin/ls", cmd, NULL);
+	ft_exec_cmd(infile, argv[2]);
 	return (0);
 }

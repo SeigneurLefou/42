@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/29 10:17:51 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:18:07 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int		is_swap(char *cmd, t_list **stacka, t_list **stackb);
 int		is_reverse_rotate(char *cmd, t_list **stacka, t_list **stackb);
 int		is_rotate(char *cmd, t_list **stacka, t_list **stackb);
 int		is_push(char *cmd, t_list **stacka, t_list **stackb);
+void	is_checked(t_list *stacka, t_list *stackb);
 
 // ============================================================================
 
@@ -162,6 +163,10 @@ char	*while_no_newline(int fd, char *buffer, char *line);
 char	*join_line_with_previous_line(char	*buffer, char *line);
 char	*give_next_line(char *buffer);
 char	*get_next_line(int fd);
+int		is_swap_noexe(char *cmd);
+int		is_reverse_rotate_noexe(char *cmd);
+int		is_rotate_noexe(char *cmd);
+int		is_push_noexe(char *cmd);
 char	*get_file(void);
 
 // ============================================================================

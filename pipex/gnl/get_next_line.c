@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:37:41 by lchamard          #+#    #+#             */
-/*   Updated: 2025/11/21 13:36:39 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:05:59 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,11 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-char	*get_file(char *path)
+char	*get_file(int fd)
 {
-	int		fd;
 	char	*line;
 	char	*res;
 
-	fd = open(path, O_RDONLY);
 	res = NULL;
 	line = get_next_line(fd);
 	while(line)
@@ -111,6 +109,7 @@ char	*get_file(char *path)
 		free(line);
 		line = get_next_line(fd);
 	}
+	res[ft_strlen(res) - 1] = '\0';
 	close(fd);
 	return (res);
 }

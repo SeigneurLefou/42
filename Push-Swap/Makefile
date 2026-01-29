@@ -86,6 +86,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(PS)ft_optimal_move.c\
 	$(PS)ft_sqrt.c\
 	$(PS)is_command.c\
+	$(PS)is_command_noexe.c\
 	$(GNL)get_next_line.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)

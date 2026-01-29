@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                        :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/15 12:02:12 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:03:01 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 int		ft_isprint(int c);
 int		ft_isvalid(const char *numbers, char *validity_str);
-int		ft_isvalid_start(const char *numbers, int	*start, char *validity_str);
+int		ft_isvalid_start(const char *numbers, int *start, char *validity_str);
 int		ft_isdouble(long *numbers);
 
 // ============================================================================
@@ -121,35 +121,6 @@ int		ft_lstissup(t_list **stack, long min);
 
 // ============================================================================
 
-// === PUSH SWAP ==============================================================
-
-size_t	ft_intslen(const int *list);
-size_t	ft_longslen(const long *list);
-t_list	*ft_parsing(int argc, char **argv);
-void	ft_swap(t_list **stack);
-void	stair_sort(t_list **stacka, t_list **stackb);
-void	ss(t_list **stacka, t_list **stackb);
-void	sa(t_list **stacka);
-void	sb(t_list **stackb);
-void	ft_rotate(t_list **stack);
-void	rr(t_list **stacka, t_list **stackb);
-void	ra(t_list **stacka);
-void	rb(t_list **stackb);
-void	ft_reverse_rotate(t_list **stack);
-void	rrr(t_list **stacka, t_list **stackb);
-void	rra(t_list **stacka);
-void	rrb(t_list **stackb);
-void	ft_push(t_list **to_pop, t_list **to_push);
-void	pa(t_list **stackb, t_list **stacka);
-void	pb(t_list **stacka, t_list **stackb);
-void	give_index(t_list **stacka);
-int		ft_sqrt(int number);
-void	insert_sort_a(t_list **stacka, t_list **stackb);
-void	insert_sort_b(t_list **stacka, t_list **stackb);
-int		ft_optimal_move(t_list **stack, int min_index, int max_index);
-
-// ============================================================================
-
 // === GET NEXT LINE ==========================================================
 
 # ifndef BUFFER_SIZE
@@ -160,7 +131,7 @@ char	*while_no_newline(int fd, char *buffer, char *line);
 char	*join_line_with_previous_line(char	*buffer, char *line);
 char	*give_next_line(char *buffer);
 char	*get_next_line(int fd);
-char	*get_file(char *path);
+char	*get_file(int fd);
 
 // ============================================================================
 
