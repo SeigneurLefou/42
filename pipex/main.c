@@ -21,58 +21,60 @@ char	**ft_append(char **array, char *element)
 	return (result);
 }
 
-void	ft_exec_cmd(char *infile, char *cmd_args) 
+void	ft_exec_cmd(char *cmd_args, char **env) 
 {
 	char	**cmd;
 	char	*path_cmd;
 	char	*cmd_name;
 
-	(void)infile;
 	cmd = ft_split(cmd_args, ' ');
-	//cmd = ft_append(cmd, infile);
 	cmd_name = cmd[0];
-	path_cmd = ft_strjoin("/bin/", cmd_name);
-	execve(path_cmd, cmd, NULL);
+	path_cmd = ft_strjoin("/usr/bin/", cmd_name);
+	execve(path_cmd, cmd, env);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
-	char	*infile;
-	char	*outfile;
+	//char	*outfile;
 	int		pipe_fd[2];
 	int 	fdio[2];
 	int		pipe_error;
 	pid_t	pid;
+	int		werror;
 
 	if (argc != 5 && access(argv[1], R_OK) == -1)
 		return (1);	
 	fdio[0] = open(argv[1], O_RDONLY);
-	infile = get_file(fdio[0]);
+	fdio[1] = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	pipe_error = pipe(pipe_fd);
 	if (pipe_error)
 		return (1);
 	pid = fork();
-	if (pid >= 0)
+	if (pid == -1)
+		return (1);
+	else if (pid == 0)
 	{
 		dup2(fdio[0], 0);
-		dup2(1, pipe_fd[1]);
+		close(fdio[0]);
+		dup2(pipe_fd[1], 1);
+		ft_exec_cmd(argv[2], env);
+		exit(127);
 	}
-	else
-		exit(0);
-	waitpid(pid, NULL, 0);
-	ft_exec_cmd(infile, argv[2]);
-	fdio[1] = open(argv[4], O_CREAT | O_WRONLY, 0664);
+	werror = waitpid(pid, NULL, 0);
+	printf("[%d]", werror);
 	pid = fork();
-	if (pid >= 0)
+	if (pid == -1)
+		return (1);
+	else if (pid == 0)
 	{
 		dup2(pipe_fd[0], 0);
-		dup2(1, fdio[1]);
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
+		dup2(fdio[1], 1);
+		ft_exec_cmd(argv[3], env);
+		exit(127);
 	}
-	else
-		exit(0);
-	outfile = get_file(fdio[1]);
-	waitpid(pid, NULL, 0);
-	printf("infile : [%s], outfile : [%s]\npipe 0 = [%d], pipe 1 = [%d]\n", infile, outfile, pipe_fd[0], pipe_fd[1]);
-	ft_exec_cmd(infile, argv[2]);
+	werror = waitpid(pid, NULL, 0);
+	close(fdio[1]);
 	return (0);
 }
