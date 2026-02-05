@@ -11,7 +11,6 @@ MEM = libft/mem_utils/
 COMP = libft/comp_utils/
 PUT = libft/put_utils/
 LST = libft/lst_utils/
-GNL = gnl/
 BUILD = build/
 PF = printf/
 
@@ -73,7 +72,6 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstshow.c\
 	$(LST)ft_lstfind.c\
 	$(LST)ft_lstisdouble.c\
-	$(GNL)get_next_line.c\
 	$(PF)ft_printf.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
@@ -90,7 +88,6 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(COMP)
 	@mkdir -p $(BUILD)$(CONV)
 	@mkdir -p $(BUILD)$(LST)
-	@mkdir -p $(BUILD)$(GNL)
 	@mkdir -p $(BUILD)$(PF)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "CC $<\n\t> $@"

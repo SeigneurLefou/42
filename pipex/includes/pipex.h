@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/29 11:03:01 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/05 09:45:23 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,20 +118,6 @@ void	ft_lstshow(t_list **stack);
 int		ft_lstisinf_ind(t_list **stack, long min);
 int		ft_lstisinf(t_list **stack, long min);
 int		ft_lstissup(t_list **stack, long min);
-
-// ============================================================================
-
-// === GET NEXT LINE ==========================================================
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 200
-# endif
-
-char	*while_no_newline(int fd, char *buffer, char *line);
-char	*join_line_with_previous_line(char	*buffer, char *line);
-char	*give_next_line(char *buffer);
-char	*get_next_line(int fd);
-char	*get_file(int fd);
 
 // ============================================================================
 
