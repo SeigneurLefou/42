@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/05 09:45:23 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/06 20:01:17 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,26 @@ void	ft_lstshow(t_list **stack);
 int		ft_lstisinf_ind(t_list **stack, long min);
 int		ft_lstisinf(t_list **stack, long min);
 int		ft_lstissup(t_list **stack, long min);
+
+// ============================================================================
+
+// === CMD LIST =============================================================
+
+typedef struct s_cmd
+{
+	char			**cmd_argv;
+	char			*cmd_name;
+	int				index;
+	struct s_cmd	*next;
+	struct s_cmd	*previous;
+}				t_cmd;
+
+t_cmd	*ft_cmdnew(long content);
+void	ft_cmdadd_front(t_cmd **cmd, t_cmd **new);
+t_cmd	*ft_cmdlast(t_cmd **cmd);
+void	ft_cmdadd_back(t_cmd **cmd, t_cmd **new);
+int		ft_cmdsize(t_cmd **cmd);
+void	ft_cmdclear(t_cmd **cmd, void (*del)(char *)
 
 // ============================================================================
 
