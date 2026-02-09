@@ -17,7 +17,7 @@ t_cmd	*ft_cmdnew(char *cmd_line, int index)
 	t_cmd	*new_cmd;
 	char	**cmd_argv;
 
-	new_cmd = ft_calloc(1, sizeof(t_list));
+	new_cmd = ft_calloc(1, sizeof(t_cmd));
 	if (!new_cmd)
 		return (NULL);
 	cmd_argv = ft_split(cmd_line);

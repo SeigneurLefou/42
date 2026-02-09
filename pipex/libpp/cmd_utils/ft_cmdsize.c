@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_cmdsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,15 @@
 
 #include "pipex.h"
 
-int	ft_lstsize(t_list **lst)
+int	ft_cmdsize(t_cmd **cmd)
 {
 	size_t	len;
-	t_list	*tmp;
+	t_cmd	*tmp;
 
 	len = 1;
-	if (!lst)
+	if (!cmd)
 		return (0);
-	tmp = *lst;
+	tmp = *cmd;
 	if (!tmp)
 		return (0);
 	while (tmp->next)

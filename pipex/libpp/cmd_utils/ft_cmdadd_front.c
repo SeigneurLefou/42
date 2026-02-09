@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_cmdadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,14 @@
 
 #include "pipex.h"
 
-void	ft_lstadd_front(t_list **lst, t_list **new)
+void	ft_cmdadd_front(t_cmd **cmd, t_cmd **new)
 {
-	if (!(*lst) || !(*new))
+	if (!(*cmd) || !(*new))
 	{
-		*lst = *new;
+		*cmd = *new;
 		return ;
 	}
-	(*new)->next = *lst;
-	*lst = *new;
+	(*cmd)->previous = *new;
+	(*new)->next = *cmd;
+	*cmd = *new;
 }

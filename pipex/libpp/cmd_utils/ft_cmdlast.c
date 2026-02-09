@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_cmdlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "pipex.h"
 
-t_list	*ft_lstlast(t_list **lst)
+t_cmd	*ft_cmdlast(t_cmd **cmd)
 {
-	t_list	*tmp;
+	t_cmd	*tmp;
 
-	tmp = *lst;
+	tmp = *cmd;
 	if (!tmp)
 		return (NULL);
 	while (tmp->next)

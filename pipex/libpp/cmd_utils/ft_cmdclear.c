@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_cmdclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,20 @@
 
 #include "pipex.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(long))
+void	ft_cmdclear(t_cmd **cmd, void (*del)(long))
 {
-	t_list	*tmp;
-	t_list	*last;
+	t_cmd	*tmp;
+	t_cmd	*last;
 
-	if (!lst || !del || !*lst)
+	if (!cmd || !del || !*cmd)
 		return ;
-	tmp = *lst;
+	tmp = *cmd;
 	while (tmp)
 	{
 		last = tmp;
 		tmp = tmp->next;
-		del(last->value);
+		del(last->content);
 		free(last);
 	}
-	*lst = NULL;
+	*cmd = NULL;
 }
