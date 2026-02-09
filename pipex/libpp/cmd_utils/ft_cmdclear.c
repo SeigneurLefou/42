@@ -6,13 +6,13 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:03:31 by lchamard          #+#    #+#             */
-/*   Updated: 2026/01/13 15:03:32 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:16:22 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_cmdclear(t_cmd **cmd, void (*del)(long))
+void	ft_cmdclear(t_cmd **cmd, void (*del)(char *))
 {
 	t_cmd	*tmp;
 	t_cmd	*last;
@@ -24,7 +24,7 @@ void	ft_cmdclear(t_cmd **cmd, void (*del)(long))
 	{
 		last = tmp;
 		tmp = tmp->next;
-		del(last->content);
+		del(last->cmd_name);
 		free(last);
 	}
 	*cmd = NULL;

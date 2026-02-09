@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:06:07 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/06 19:47:46 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/09 15:15:15 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cmd	*ft_cmdnew(char *cmd_line, int index)
 	new_cmd = ft_calloc(1, sizeof(t_cmd));
 	if (!new_cmd)
 		return (NULL);
-	cmd_argv = ft_split(cmd_line);
+	cmd_argv = ft_split(cmd_line, ' ');
 	new_cmd->cmd_argv = cmd_argv;
 	new_cmd->cmd_name = cmd_argv[0];
 	new_cmd->index = index;

@@ -6,24 +6,21 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/09 11:46:22 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/09 17:39:17 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_exec_cmd(char *cmd_args, char **env) 
+void	ft_exec_cmd(t_cmd *cmd, char **env) 
 {
-	char	**cmd;
 	char	*path_cmd;
 
-	cmd = ft_split(cmd_args, ' ');
-	path_cmd = ft_strjoin("/usr/bin/", cmd[0]);
-	
-	execve(path_cmd, cmd, env);
+	path_cmd = ft_strjoin("/usr/bin/", cmd->cmd_name);
+	execve(path_cmd, cmd->cmd_argv, env);
 }
 
-void	take_child(int fdin, int fdout, char *cmd, char **env)
+void	take_child(int fdin, int fdout, t_cmd *cmd, char **env)
 {
 	dup2(fdin, 0);
 	close(fdin);
@@ -35,7 +32,7 @@ void	take_child(int fdin, int fdout, char *cmd, char **env)
 
 int	ft_waitallpid(pid_t *pid)
 {
-	int	pid_index;
+	int		pid_index;
 	int		werror;
 
 	pid_index = 0;
@@ -75,32 +72,30 @@ void	ft_cmdshow(t_cmd *cmd)
 	i = 0;
 	while (tmp)
 	{
-		printf("name : [%s]", cmd->cmd_name);
+		ft_printf("name : [%s]\n", tmp->cmd_name);
 		while (tmp->cmd_argv[i])
 		{
-			printf("argv[%d] : [%s]", i, tmp->cmd_argv[i]);
+			ft_printf("argv[%d] : [%s]\n", i, tmp->cmd_argv[i]);
 			i++;
 		}
+		i = 0;
 		tmp = tmp->next;
 	}
 }
 
 int	main(int argc, char **argv, char **env)
 {
-/*
 	int		pipe_fd[2];
 	int		tmp_fd;
 	int		pipe_error;
+	pid_t	*pid;
 	t_cmd	*cmd;
-*/
 
-	if (argc < 5 && access(argv[1], R_OK) == -1)
+	if (argc < 4 && access(argv[1], R_OK) == -1)
 		return (1);	
-	t_cmd *cmd = init_list_cmd(argc - 3, argv + 2);
+	cmd = init_list_cmd(argc - 3, argv + 2);
 	ft_cmdshow(cmd);
-	(void)env;
-
-	/*pid = ft_calloc(sizeof(pid_t, ft_lstsize(cmd)));
+	pid = ft_calloc(sizeof(pid_t), ft_cmdsize(&cmd));
 	if (!pid)
 		return (1);
 	while (cmd)
@@ -111,14 +106,16 @@ int	main(int argc, char **argv, char **env)
 		if (!(cmd->previous))
 			tmp_fd = open(argv[1], O_RDONLY);
 		if (!(cmd->next))
-			pipe_fd[1] = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+			pipe_fd[1] = open(argv[argc - 1],
+					O_CREAT | O_WRONLY | O_TRUNC, 0664);
 		pid[cmd->index] = fork();
 		if (pid[cmd->index] == -1)
 			return (1);
-		else if (pid[cmd_index] == 0)
+		else if (pid[cmd->index] == 0)
 			take_child(tmp_fd, pipe_fd[1], cmd, env);
+		cmd = cmd->next;
 	}
 	close(pipe_fd[0]);
-	close(tmp_fd);*/
+	close(tmp_fd);
 	return (0);
 }
