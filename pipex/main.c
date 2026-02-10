@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/09 17:39:17 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/10 09:02:11 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_cmd	*init_list_cmd(int argc, char **argv)
 void	ft_cmdshow(t_cmd *cmd)
 {
 	t_cmd	*tmp;
-	int	i;
+	int		i;
 
 	tmp = cmd;
 	i = 0;
