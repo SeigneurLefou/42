@@ -6,12 +6,12 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/09 11:44:55 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:19:22 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PIPEX_H
+# define PIPEX_H
 
 # include <stdlib.h>
 # include <unistd.h>
