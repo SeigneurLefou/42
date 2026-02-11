@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/11 11:01:44 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/11 14:30:02 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,21 @@ char	*ft_get_cmd_path(t_cmd *cmd, char **env)
 	splited_path = ft_split(path, ':');
 	free(path);
 	i = 0;
-	cmd_path = ft_strjoin(splited_path[i], cmd->cmd_name);
-	while (splited_path[i] && !access(cmd_path, X_OK))
-	{
-		i++;
-		free(cmd_path);
-		if (splited_path[i])
-			cmd_path = ft_strjoin(splited_path[i], cmd->cmd_name);
-	}
-	if (!splited_path[i])
-		return (NULL);
 	cmd_path = ft_strjoin(splited_path[i], "/");
 	cmd_path = ft_strjoin(cmd_path, cmd->cmd_name);
+	while (splited_path[i] && access(cmd_path, X_OK))
+	{
+		free(cmd_path);
+		cmd_path = ft_strjoin(splited_path[i], "/");
+		cmd_path = ft_strjoin(cmd_path, cmd->cmd_name);
+		i++;
+	}
+	if (!splited_path[i])
+	{
+		ft_double_free(splited_path);
+		free(cmd_path);
+		return (NULL);
+	}
 	return (cmd_path);
 }
 
