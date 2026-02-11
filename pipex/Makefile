@@ -32,12 +32,14 @@ SRC = $(COMP)ft_isascii.c\
 	$(MEM)ft_memcpy.c\
 	$(MEM)ft_memmove.c\
 	$(MEM)ft_memchr.c\
+	$(MEM)ft_double_free.c\
 	$(MEM)ft_bzero.c\
 	$(MEM)ft_memcmp.c\
 	$(MEM)ft_memset.c\
 	$(MEM)ft_calloc.c\
 	$(PUT)ft_putchar_fd.c\
 	$(PUT)ft_putstr_fd.c\
+	$(PUT)ft_putstrstr_fd.c\
 	$(PUT)ft_putendl_fd.c\
 	$(PUT)ft_putnbr_fd.c\
 	$(PUT)ft_putnbr_endl.c\
@@ -57,9 +59,11 @@ SRC = $(COMP)ft_isascii.c\
 	$(STR)ft_striteri.c\
 	$(STR)ft_strtrim.c\
 	$(STR)ft_strlcpy.c\
+	$(STR)ft_strcpy.c\
 	$(STR)ft_strchr.c\
 	$(STR)ft_strichr.c\
 	$(STR)ft_strlcat.c\
+	$(STR)ft_strcat.c\
 	$(STR)ft_split.c\
 	$(LST)ft_lstadd_back.c\
 	$(LST)ft_lstadd_front.c\
@@ -79,7 +83,8 @@ SRC = $(COMP)ft_isascii.c\
 	$(CMD)ft_cmdlast.c\
 	$(CMD)ft_cmdsize.c\
 	$(CMD)ft_cmdnew.c\
-	$(CMD)ft_cmdclear.c
+	$(CMD)ft_cmdclear.c\
+	$(CMD)ft_cmdshow.c
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 

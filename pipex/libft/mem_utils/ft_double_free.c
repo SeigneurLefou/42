@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_endl.c                                   :+:      :+:    :+:   */
+/*   ft_double_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 14:54:28 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/11 09:20:18 by lchamard         ###   ########.fr       */
+/*   Created: 2026/02/11 10:32:40 by lchamard          #+#    #+#             */
+/*   Updated: 2026/02/11 10:34:53 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "pipex.h"
 
-void	ft_putnbr_endl(long nb)
+void	ft_double_free(void **double_list)
 {
-	if (nb < 0)
+	size_t	i;
+
+	i = 0;
+	while (double_list[i])
 	{
-		if (nb == LONG_MIN)
-		{
-			ft_putstr_fd("-9223372036854775808", 1);
-			return ;
-		}
-		ft_putchar_fd('-', 1);
-		nb *= -1;
+		free(double_list[i]);
+		i++;
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, 1);
-	ft_putchar_fd((nb % 10) + '0', 1);
-	ft_putchar_fd('\n', 1);
+	free(double_list);
 }

@@ -6,45 +6,59 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/10 16:24:53 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/11 11:01:44 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_cmdshow(t_cmd *cmd)
+
+char	*ft_getenv(char **env, char *var)
 {
 	int		i;
+	int		len_var_name;
+	char	*var_content;
 
 	i = 0;
-	ft_printf("previous [%p], cmd_name [%s], actual [%p], next [%p]\n",
-		cmd->previous, cmd->cmd_name, cmd, cmd->next);
-	while (cmd->cmd_argv[i])
-	{
-		ft_printf("argv[%d] : [%s]\n", i, cmd->cmd_argv[i]);
+	len_var_name = ft_strlen(var);
+	while (ft_strncmp(env[i], var, len_var_name))
 		i++;
-	}
+	var_content = ft_calloc(sizeof(char), ft_strlen(env[i]) - len_var_name - 1);
+	var_content = ft_strcpy(var_content, &env[i][len_var_name + 1]);
+	return (var_content);
 }
 
-void	ft_showallcmd(t_cmd *cmd)
+char	*ft_get_cmd_path(t_cmd *cmd, char **env)
 {
-	t_cmd	*tmp;
-
-	tmp = cmd;
-	ft_putendl_fd("=== === === === ===", 1);
-	while (tmp)
+	char	*path;
+	char	**splited_path;
+	char	*cmd_path;
+	int		i;
+	
+	path = ft_getenv(env, "PATH");
+	splited_path = ft_split(path, ':');
+	free(path);
+	i = 0;
+	cmd_path = ft_strjoin(splited_path[i], cmd->cmd_name);
+	while (splited_path[i] && !access(cmd_path, X_OK))
 	{
-		ft_cmdshow(tmp);
-		tmp = tmp->next;
+		i++;
+		free(cmd_path);
+		if (splited_path[i])
+			cmd_path = ft_strjoin(splited_path[i], cmd->cmd_name);
 	}
-	ft_putendl_fd("=== === === === ===", 1);
+	if (!splited_path[i])
+		return (NULL);
+	cmd_path = ft_strjoin(splited_path[i], "/");
+	cmd_path = ft_strjoin(cmd_path, cmd->cmd_name);
+	return (cmd_path);
 }
 
 void	ft_exec_cmd(t_cmd *cmd, char **env)
 {
 	char	*path_cmd;
 
-	path_cmd = ft_strjoin("/usr/bin/", cmd->cmd_name);
+	path_cmd = ft_get_cmd_path(cmd, env);
 	execve(path_cmd, cmd->cmd_argv, env);
 }
 
@@ -66,7 +80,7 @@ int	ft_fork_pid(int fdin, int *fdout, t_cmd *cmd, char **env)
 	if (pid == -1)
 		return (-1);
 	else if (pid == 0)
-		take_child(fdin, fdout[1], cmd, env); // ERREUR POSSIBLE
+		take_child(fdin, fdout[1], cmd, env);
 	close(fdin);
 	close(fdout[1]);
 	return (fdout[0]);
@@ -111,16 +125,11 @@ int	main(int argc, char **argv, char **env)
 	int		tmp_fd;
 	int		pipe_error;
 	int		werror;
-	// pid_t	*pid;
 	t_cmd	*cmd;
 
 	if (argc < 4) //&& access(argv[1], R_OK) == -1)
 		return (1);
 	cmd = init_list_cmd(argc - 3, argv + 2);
-	ft_showallcmd(cmd);
-	/*pid = ft_calloc(sizeof(pid_t), ft_cmdsize(&cmd));
-	if (!pid)
-		return (1);*/
 	while (cmd)
 	{
 		pipe_error = pipe(pipe_fd);
@@ -131,15 +140,11 @@ int	main(int argc, char **argv, char **env)
 		if (!(cmd->next))
 			pipe_fd[1] = open(argv[argc - 1],
 					O_CREAT | O_WRONLY | O_TRUNC, 0664);
-		/*pid[cmd->index] = fork();
-		if (pid[cmd->index] == -1)
-			return (1);*/
 		tmp_fd = ft_fork_pid(tmp_fd, pipe_fd, cmd, env);
 		if (tmp_fd == -1)
 			return (1);
-		cmd = cmd->next; // ERREUR POSSIBLE
+		cmd = cmd->next;
 	}
-	// ft_waitallpid(pid); // ERREUR POSSIBLE
 	waitpid(-1, &werror, 0);
 	close(pipe_fd[0]);
 	close(tmp_fd);

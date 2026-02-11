@@ -6,9 +6,10 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:54:42 by lchamard          #+#    #+#             */
-/*   Updated: 2025/10/28 14:45:03 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/11 09:54:32 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "pipex.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)

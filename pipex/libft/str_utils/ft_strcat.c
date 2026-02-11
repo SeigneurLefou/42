@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_endl.c                                   :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 14:54:28 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/11 09:20:18 by lchamard         ###   ########.fr       */
+/*   Created: 2026/02/11 09:52:06 by lchamard          #+#    #+#             */
+/*   Updated: 2026/02/11 09:59:06 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "pipex.h"
 
-void	ft_putnbr_endl(long nb)
+char	*ft_strcat(char *dest, char *src)
 {
-	if (nb < 0)
+	size_t	dest_len;
+	size_t	src_len;
+
+	dest_len = 0;
+	src_len = 0;
+	while (dest[dest_len])
+		dest_len++;
+	while (src[src_len])
 	{
-		if (nb == LONG_MIN)
-		{
-			ft_putstr_fd("-9223372036854775808", 1);
-			return ;
-		}
-		ft_putchar_fd('-', 1);
-		nb *= -1;
+		dest[dest_len + src_len] = src[src_len];
+		src_len++;
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, 1);
-	ft_putchar_fd((nb % 10) + '0', 1);
-	ft_putchar_fd('\n', 1);
+	dest[dest_len + src_len] = '\0';
+	return (dest);
 }

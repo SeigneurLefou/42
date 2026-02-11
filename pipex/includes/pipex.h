@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/10 11:19:22 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/11 10:35:34 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int		ft_strichr(char c, char *str, size_t start);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strnjoin(char *s1, char *s2, size_t n);
+char	*ft_strcpy(char *dest, const char *src);
+char	*ft_strcat(char *dest, char *src);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
@@ -80,6 +82,7 @@ int		ft_putnbr_fd(int nb, int fd);
 int		ft_putnbrbase_fd(size_t nb, char *base, int fd);
 int		ft_put_unsigned_nbr_fd(unsigned int nb, int fd);
 int		ft_putendl_fd(char *str, int fd);
+int		ft_putstrstr_fd(char **strstr, int fd);
 
 // ============================================================================
 
@@ -92,6 +95,7 @@ void	*ft_memset(void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
+void	ft_double_free(void **double_list);
 
 // ============================================================================
 
@@ -138,6 +142,8 @@ t_cmd	*ft_cmdlast(t_cmd **cmd);
 void	ft_cmdadd_back(t_cmd **cmd, t_cmd **new);
 int		ft_cmdsize(t_cmd **cmd);
 void	ft_cmdclear(t_cmd **cmd, void (*del)(char *));
+void	ft_cmdshow(t_cmd *cmd);
+void	ft_showallcmd(t_cmd *cmd);
 
 // ============================================================================
 
