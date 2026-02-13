@@ -13,6 +13,7 @@ PUT = libft/put_utils/
 LST = libft/lst_utils/
 BUILD = build/
 PF = printf/
+GNL = gnl/
 CMD = libpp/cmd_utils/
 
 SRC = $(COMP)ft_isascii.c\
@@ -50,6 +51,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(STR)ft_strlen.c\
 	$(STR)ft_strdup.c\
 	$(STR)ft_strncmp.c\
+	$(STR)ft_strcmp.c\
 	$(STR)ft_strrchr.c\
 	$(STR)ft_substr.c\
 	$(STR)ft_strjoin.c\
@@ -78,6 +80,7 @@ SRC = $(COMP)ft_isascii.c\
 	$(LST)ft_lstfind.c\
 	$(LST)ft_lstisdouble.c\
 	$(PF)ft_printf.c\
+	$(GNL)get_next_line.c\
 	$(CMD)ft_cmdadd_back.c\
 	$(CMD)ft_cmdadd_front.c\
 	$(CMD)ft_cmdlast.c\
@@ -102,6 +105,7 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(LST)
 	@mkdir -p $(BUILD)$(PF)
 	@mkdir -p $(BUILD)$(CMD)
+	@mkdir -p $(BUILD)$(GNL)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "CC $<\n\t> $@"
 

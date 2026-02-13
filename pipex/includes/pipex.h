@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/11 14:20:05 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/13 10:34:26 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
 int		ft_strncmp(char *s1, char *s2, size_t n);
+int		ft_strcmp(char *s1, char *s2n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(char *s, int c);
 void	*ft_strtrim(char const *s1, char const *set);
@@ -152,6 +153,31 @@ void	ft_showallcmd(t_cmd *cmd);
 typedef unsigned int	t_unint;
 
 int		ft_printf(const char *format, ...);
+
+// ============================================================================
+
+// === GNL ====================================================================
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 200
+# endif
+
+char	*while_no_newline(int fd, char *buffer, char *line);
+char	*join_line_with_previous_line(char	*buffer, char *line);
+char	*give_next_line(char *buffer);
+char	*get_next_line(int fd);
+
+// ============================================================================
+
+// === PIPEX ==================================================================
+
+typedef struct s_pipex
+{
+	int				fd[3];
+	char			**env;
+	char			*outfile;
+	struct s_cmd	*cmd;
+}				t_pipex;
 
 // ============================================================================
 
