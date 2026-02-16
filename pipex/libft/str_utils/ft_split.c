@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 09:58:02 by lchamard          #+#    #+#             */
-/*   Updated: 2025/10/28 17:09:01 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:07:33 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "pipex.h"
@@ -18,9 +18,9 @@ static int	ft_count(char const *s, char c)
 
 	i = 1;
 	count = 0;
-	if (s[0] != '\0' && s[0] != c)
+	if (s && s[0] != '\0' && s[0] != c)
 		count++;
-	while (s[i])
+	while (s && s[i - 1] && s[i])
 	{
 		if (s[i] != c && s[i - 1] == c)
 			count++;
@@ -60,26 +60,27 @@ static char	*ft_extract_word(char const *s, char c)
 static char	**ft_real_split(char **tofill, char const *s, char c)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (*s)
+	j = 0;
+	while (s[j])
 	{
-		if (*s != c)
+		if (s[j] != c)
 		{
-			tofill[i] = ft_extract_word(s, c);
+			tofill[i] = ft_extract_word(s + j, c);
 			if (!tofill[i])
 			{
 				ft_free_all(tofill);
 				return (NULL);
 			}
 			i++;
-			while (*s && *s != c)
-				s++;
+			while (s[j] && s[j] != c)
+				j++;
 		}
 		else
-			s++;
+			j++;
 	}
-	tofill[i] = NULL;
 	return (tofill);
 }
 
