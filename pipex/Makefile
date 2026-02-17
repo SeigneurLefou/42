@@ -15,6 +15,7 @@ BUILD = build/
 PF = printf/
 GNL = gnl/
 CMD = libpp/cmd_utils/
+PIP = libpp/
 
 SRC = $(COMP)ft_isascii.c\
 	$(COMP)ft_isdigit.c\
@@ -84,10 +85,16 @@ SRC = $(COMP)ft_isascii.c\
 	$(CMD)ft_cmdadd_back.c\
 	$(CMD)ft_cmdadd_front.c\
 	$(CMD)ft_cmdlast.c\
+	$(CMD)ft_cmdfirst.c\
 	$(CMD)ft_cmdsize.c\
 	$(CMD)ft_cmdnew.c\
 	$(CMD)ft_cmdclear.c\
-	$(CMD)ft_cmdshow.c
+	$(CMD)ft_cmdshow.c\
+	$(PIP)exec_cmd.c\
+	$(PIP)execution_loop.c\
+	$(PIP)exit_processus.c\
+	$(PIP)here_doc.c\
+	$(PIP)initialiser.c\
 
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
@@ -105,6 +112,7 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(LST)
 	@mkdir -p $(BUILD)$(PF)
 	@mkdir -p $(BUILD)$(CMD)
+	@mkdir -p $(BUILD)$(PIP)
 	@mkdir -p $(BUILD)$(GNL)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "CC $<\n\t> $@"

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cmdadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_cmdfirst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/13 15:03:35 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/17 08:58:38 by lchamard         ###   ########.fr       */
+/*   Created: 2026/02/17 08:55:47 by lchamard          #+#    #+#             */
+/*   Updated: 2026/02/17 11:20:13 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_cmdadd_back(t_cmd **cmd, t_cmd **new)
+t_cmd	*ft_cmdfirst(t_cmd *cmd)
 {
 	t_cmd	*tmp;
 
-	if (!(*cmd) && *new)
+	tmp = cmd;
+	while (tmp->previous)
 	{
-		*cmd = *new;
-		return ;
+		tmp = tmp->previous;
 	}
-	if (!(*cmd) || !(*new))
-		return ;
-	tmp = *cmd;
-	tmp = ft_cmdlast(tmp);
-	tmp->next = *new;
-	(*new)->previous = tmp;
+	return (tmp);
 }

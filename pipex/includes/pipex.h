@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/13 10:34:26 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/17 18:35:46 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,21 @@ int		ft_lstissup(t_list **stack, long min);
 
 // ============================================================================
 
-// === CMD LIST =============================================================
+// === PIPEX ==================================================================
+
+typedef struct s_pipex
+{
+	int				fd[3];
+	int				*pid;
+	char			**env;
+	char			*outfile;
+	char			*infile;
+	struct s_cmd	*cmd;
+}				t_pipex;
+
+// ============================================================================
+
+// === CMD ====================================================================
 
 typedef struct s_cmd
 {
@@ -139,12 +153,26 @@ typedef struct s_cmd
 
 t_cmd	*ft_cmdnew(char *cmd_line, int index);
 void	ft_cmdadd_front(t_cmd **cmd, t_cmd **new);
-t_cmd	*ft_cmdlast(t_cmd **cmd);
+t_cmd	*ft_cmdlast(t_cmd *cmd);
+t_cmd	*ft_cmdfirst(t_cmd *cmd);
 void	ft_cmdadd_back(t_cmd **cmd, t_cmd **new);
 int		ft_cmdsize(t_cmd **cmd);
-void	ft_cmdclear(t_cmd **cmd, void (*del)(char *));
+void	ft_cmdclear(t_cmd *cmd);
 void	ft_cmdshow(t_cmd *cmd);
-void	ft_showallcmd(t_cmd *cmd);
+void	showallcmd(t_cmd **cmd);
+void	exec_cmd(t_pipex *pipex_var);
+char	*get_env(t_pipex *pipex_var, char *var);
+char	*get_cmd_path(t_pipex *pipex_var);
+int		get_file_while_not_limiter(int fd, char *limiter, char **buffer);
+char	*here_doc_file(char **argv);
+int		give_exit_code(int status);
+int		wait_all_pid(t_pipex *pipex_var);
+int		fake_fdin(void);
+t_cmd	*init_list_cmd(int argc, char **argv);
+void	init_pipex(int argc, char **argv, t_pipex *pipex_var);
+void	take_child(t_pipex *pipex_var);
+int		fork_pid(t_pipex	*pipex_var);
+int		execution_loop(t_pipex *pipex_var);
 
 // ============================================================================
 
@@ -166,18 +194,6 @@ char	*while_no_newline(int fd, char *buffer, char *line);
 char	*join_line_with_previous_line(char	*buffer, char *line);
 char	*give_next_line(char *buffer);
 char	*get_next_line(int fd);
-
-// ============================================================================
-
-// === PIPEX ==================================================================
-
-typedef struct s_pipex
-{
-	int				fd[3];
-	char			**env;
-	char			*outfile;
-	struct s_cmd	*cmd;
-}				t_pipex;
 
 // ============================================================================
 

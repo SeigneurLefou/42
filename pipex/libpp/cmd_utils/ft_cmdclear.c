@@ -6,26 +6,33 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:03:31 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/09 15:16:22 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/17 11:17:21 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_cmdclear(t_cmd **cmd, void (*del)(char *))
+void	ft_cmdclear(t_cmd *cmd)
 {
 	t_cmd	*tmp;
 	t_cmd	*last;
+	int		i;
 
-	if (!cmd || !del || !*cmd)
-		return ;
-	tmp = *cmd;
+	tmp = ft_cmdfirst(cmd);
 	while (tmp)
 	{
 		last = tmp;
 		tmp = tmp->next;
-		del(last->cmd_name);
+		i = 0;
+		while (last->cmd_argv[i])
+		{
+			free(last->cmd_argv[i]);
+			i++;
+		}
+		free(last->cmd_argv);
 		free(last);
 	}
-	*cmd = NULL;
+	if (tmp)
+		free(tmp);
+	cmd = NULL;
 }
