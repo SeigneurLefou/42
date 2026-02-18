@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:48:59 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/17 17:50:09 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/18 08:54:27 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_file_while_not_limiter(int fd, char *limiter, char **buffer)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	return (0);
 }
 
@@ -36,5 +37,6 @@ char	*here_doc_file(char **argv)
 	tmp_fd = open(".truncate_file", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	write(tmp_fd, input_user, ft_strlen(input_user));
 	close(tmp_fd);
+	free(input_user);
 	return (".truncate_file");
 }

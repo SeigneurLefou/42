@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:46:01 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/17 18:07:56 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/18 08:28:03 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	char	*cmd_path;
 	int		i;
 
+	if (!access(pipex_var->cmd->cmd_name, X_OK))
+		return (pipex_var->cmd->cmd_name);
 	path = get_env(pipex_var, "PATH");
 	splited_path = ft_split(path, ':');
 	free(path);

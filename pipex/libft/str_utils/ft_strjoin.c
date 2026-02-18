@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:18:54 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/16 18:06:57 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/18 08:53:24 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		joinstr[i] = s1[i];
 		i++;
 	}
+	if (s1)
+		free(s1);
 	j = 0;
 	while (s2 && s2[j])
 	{
