@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:46:01 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/18 08:28:03 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/18 15:23:18 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	i = 0;
 	while (splited_path[i])
 	{
-		cmd_path = ft_strjoin(splited_path[i], "/");
+		cmd_path = ft_strjoin(splited_path[i++], "/");
 		cmd_path = ft_strjoin(cmd_path, pipex_var->cmd->cmd_name);
 		if (!access(cmd_path, X_OK))
 			break ;
-		i++;
 	}
 	if (!splited_path[i])
 	{

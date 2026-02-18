@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:57:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/18 08:34:11 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/18 15:22:36 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ int	execution_loop(t_pipex *pipex_var)
 		if (pipex_var->fd[0] == -1)
 			return (1);
 		if (!pipex_var->cmd->next)
-		{
 			return (1);
-		}
 		pipex_var->cmd = pipex_var->cmd->next;
 	}
 	return (0);
