@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:46:01 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 11:47:25 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 16:19:06 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	char	*cmd_path;
 	int		i;
 
-	if (!access(pipex_var->cmd->cmd_name, X_OK)) // ERROR
+	if (access(pipex_var->cmd->cmd_name, X_OK) != -1) // errno defini ici donc erreur
 		return (pipex_var->cmd->cmd_name);
 	path = get_env(pipex_var, "PATH");
 	splited_path = ft_split(path, ':');
@@ -45,19 +45,16 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	{
 		cmd_path = ft_strjoin(splited_path[i++], "/");
 		cmd_path = ft_strjoin(cmd_path, pipex_var->cmd->cmd_name);
-		if (!access(cmd_path, X_OK))
+		if (access(cmd_path, X_OK) != -1)
 			break ;
+		free(cmd_path);
 	}
+	errno = 0;
 	if (!splited_path[i])
 	{
-		ft_double_free(splited_path);
-		free(cmd_path);
+		free(splited_path);
 		return (NULL);
 	}
+	ft_double_free_start(splited_path, i);
 	return (cmd_path);
-}
-
-void	exec_cmd(t_pipex *pipex_var, char *path_cmd)
-{
-	execve(path_cmd, pipex_var->cmd->cmd_argv, pipex_var->env);
 }

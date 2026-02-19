@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 09:58:02 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/17 17:51:03 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 16:15:36 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	res = ft_calloc(ft_count(s, c) + 2, sizeof(char *));
+	res = ft_calloc(ft_count(s, c) + 1, sizeof(char *));
 	if (!res)
 		return (NULL);
 	res = ft_real_split(res, s, c);

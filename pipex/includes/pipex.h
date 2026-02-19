@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 11:26:30 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 16:29:00 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	ft_double_free(char **double_list);
+void	ft_double_free_start(char **double_list, int start);
 
 // ============================================================================
 
@@ -133,7 +134,6 @@ typedef struct s_pipex
 	int				*pid;
 	char			**env;
 	char			*outfile;
-	char			*infile;
 	struct s_cmd	*cmd;
 }				t_pipex;
 
@@ -165,7 +165,7 @@ int		fork_pid(t_pipex	*pipex_var, char *path_cmd);
 char	*get_env(t_pipex *pipex_var, char *var);
 char	*get_cmd_path(t_pipex *pipex_var);
 int		get_file_while_not_limiter(int fd, char *limiter, char **buffer);
-char	*here_doc_file(char **argv);
+int		here_doc_file(char **argv);
 int		give_exit_code(int status);
 int		wait_all_pid(t_pipex *pipex_var);
 int		fake_fdin(void);

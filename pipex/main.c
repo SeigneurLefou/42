@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 07:47:49 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 16:34:34 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv, char **env)
 	int		exit_code;
 	t_pipex	pipex_var;
 
-	if (argc != 5 || !env)
+	if (!strcmp("here_doc", argv[1]) || argc != 5 || !env)
 	{
 		strerror(EINVAL);
 		exit(EINVAL);
@@ -26,9 +26,6 @@ int	main(int argc, char **argv, char **env)
 	pipex_var.outfile = argv[argc - 1];
 	init_pipex(argc, argv, &pipex_var);
 	pipex_var.env = env;
-	pipex_var.fd[0] = open(pipex_var.infile, O_RDONLY);
-	if (pipex_var.fd[0] == -1)
-		pipex_var.fd[0] = fake_fdin();
 	execution_loop(&pipex_var);
 	close(pipex_var.fd[0]);
 	ft_cmdclear(pipex_var.cmd);

@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 10:32:40 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/11 14:19:37 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 13:35:30 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@ void	ft_double_free(char **double_list)
 	size_t	i;
 
 	i = 0;
+	while (double_list[i])
+	{
+		free(double_list[i]);
+		i++;
+	}
+	free(double_list);
+}
+
+void	ft_double_free_start(char **double_list, int start)
+{
+	size_t	i;
+
+	i = start;
 	while (double_list[i])
 	{
 		free(double_list[i]);
