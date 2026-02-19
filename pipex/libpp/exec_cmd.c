@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:46:01 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/18 15:23:18 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 11:47:25 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	char	*cmd_path;
 	int		i;
 
-	if (!access(pipex_var->cmd->cmd_name, X_OK))
+	if (!access(pipex_var->cmd->cmd_name, X_OK)) // ERROR
 		return (pipex_var->cmd->cmd_name);
 	path = get_env(pipex_var, "PATH");
 	splited_path = ft_split(path, ':');
@@ -57,10 +57,7 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	return (cmd_path);
 }
 
-void	exec_cmd(t_pipex *pipex_var)
+void	exec_cmd(t_pipex *pipex_var, char *path_cmd)
 {
-	char	*path_cmd;
-
-	path_cmd = get_cmd_path(pipex_var);
 	execve(path_cmd, pipex_var->cmd->cmd_argv, pipex_var->env);
 }
