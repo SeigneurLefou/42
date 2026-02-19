@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 15:07:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/17 18:35:46 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 08:09:04 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,11 @@ int		wait_all_pid(t_pipex *pipex_var);
 int		fake_fdin(void);
 t_cmd	*init_list_cmd(int argc, char **argv);
 void	init_pipex(int argc, char **argv, t_pipex *pipex_var);
+void	init_pipex_bonus(int argc, char **argv, t_pipex *pipex_var);
 void	take_child(t_pipex *pipex_var);
 int		fork_pid(t_pipex	*pipex_var);
 int		execution_loop(t_pipex *pipex_var);
+int		execution_loop_here_doc(t_pipex *pipex_var);
 
 // ============================================================================
 

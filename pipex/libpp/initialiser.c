@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:53:44 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/17 17:56:24 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 07:37:47 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ t_cmd	*init_list_cmd(int argc, char **argv)
 }
 
 void	init_pipex(int argc, char **argv, t_pipex *pipex_var)
+{
+	pipex_var->infile = argv[1];
+	pipex_var->cmd = init_list_cmd(argc - 3, argv + 2);
+	pipex_var->pid = ft_calloc(sizeof(int), argc - 2);
+}
+
+void	init_pipex_bonus(int argc, char **argv, t_pipex *pipex_var)
 {
 	int	number_move_right_argv;
 

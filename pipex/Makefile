@@ -1,4 +1,5 @@
 NAME = pipex
+BONUS = pipex_bonus
 CC = cc
 BUILD = build/
 CFLAGS = -Wall -Wextra -Werror -g
@@ -102,6 +103,10 @@ $(NAME) : $(OBJ) main.c
 	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) -o $(NAME)
 	@echo "BINARY : $(NAME)"
 
+$(BONUS) : $(OBJ) main_bonus.c
+	@$(CC) $(CFLAGS) $(INCLUDES) main_bonus.c $(OBJ) -o $(BONUS)
+	@echo "BINARY : $(BONUS)"
+
 $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)
 	@mkdir -p $(BUILD)$(STR)
@@ -117,7 +122,13 @@ $(BUILD)%.o : %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "CC $<\n\t> $@"
 
-clean : 
+re : fclean all bonus
+
+bonus : $(BONUS)
+
+all : $(NAME) 
+
+clean :
 	@rm -Rf $(BUILD)
 	@rm -Rf libft/$(BUILD)
 	@echo "DELETE : $(BUILD)"
@@ -125,9 +136,7 @@ clean :
 fclean : clean
 	@rm -f $(NAME)
 	@echo "DELETE : $(NAME)"
+	@rm -f $(BONUS)
+	@echo "DELETE : $(BONUS)"
 
-re : fclean all
-
-all : $(NAME) 
-
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

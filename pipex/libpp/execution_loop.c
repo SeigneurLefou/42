@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:57:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/18 15:22:36 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 08:16:04 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,34 @@ int	execution_loop(t_pipex *pipex_var)
 			close(pipex_var->fd[2]);
 			pipex_var->fd[2] = open(pipex_var->outfile,
 					O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		}
+		pipex_var->fd[0] = fork_pid(pipex_var);
+		if (pipex_var->fd[0] == -1)
+			return (1);
+		if (!pipex_var->cmd->next)
+			return (1);
+		pipex_var->cmd = pipex_var->cmd->next;
+	}
+	return (0);
+}
+
+int	execution_loop_here_doc(t_pipex *pipex_var)
+{
+	int		pipe_error;
+
+	while (pipex_var->cmd)
+	{
+		if (!(pipex_var->cmd->next) && !access(pipex_var->outfile, F_OK)
+			&& access(pipex_var->outfile, W_OK))
+			return (0);
+		pipe_error = pipe(&pipex_var->fd[1]);
+		if (pipe_error)
+			return (1);
+		if (!(pipex_var->cmd->next))
+		{
+			close(pipex_var->fd[2]);
+			pipex_var->fd[2] = open(pipex_var->outfile,
+					O_CREAT | O_APPEND | O_WRONLY, 0644);
 		}
 		pipex_var->fd[0] = fork_pid(pipex_var);
 		if (pipex_var->fd[0] == -1)
