@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:57:48 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 16:40:59 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/19 17:07:18 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,28 @@ int	fork_pid(t_pipex	*pipex_var, char *path_cmd)
 	return (pipex_var->fd[1]);
 }
 
+int	child_gestion(t_pipex *pipex_var)
+{
+	char	*path_cmd;
+
+	if (!path_cmd)
+	{
+		close(pipex_var->fd[1]);
+		close(pipex_var->fd[2]);
+		return (1);
+	}
+	pipex_var->fd[0] = fork_pid(pipex_var, path_cmd);
+	free(path_cmd);
+	if (pipex_var->fd[0] == -1)
+		return (1);
+	if (!pipex_var->cmd->next)
+		return (1);
+	pipex_var->cmd = pipex_var->cmd->next;
+}
+
 int	execution_loop(t_pipex *pipex_var)
 {
 	int		pipe_error;
-	char	*path_cmd;
 
 	while (pipex_var->cmd)
 	{
@@ -58,20 +76,8 @@ int	execution_loop(t_pipex *pipex_var)
 			pipex_var->fd[2] = open(pipex_var->outfile,
 					O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		}
-		path_cmd = get_cmd_path(pipex_var);
-		if (!path_cmd)
-		{
-			close(pipex_var->fd[1]);
-			close(pipex_var->fd[2]);
+		if (child_gestion(pipex_var))
 			return (1);
-		}
-		pipex_var->fd[0] = fork_pid(pipex_var, path_cmd);
-		free(path_cmd);
-		if (pipex_var->fd[0] == -1)
-			return (1);
-		if (!pipex_var->cmd->next)
-			return (1);
-		pipex_var->cmd = pipex_var->cmd->next;
 	}
 	return (0);
 }
@@ -79,7 +85,6 @@ int	execution_loop(t_pipex *pipex_var)
 int	execution_loop_here_doc(t_pipex *pipex_var)
 {
 	int		pipe_error;
-	char	*path_cmd;
 
 	while (pipex_var->cmd)
 	{
@@ -95,20 +100,8 @@ int	execution_loop_here_doc(t_pipex *pipex_var)
 			pipex_var->fd[2] = open(pipex_var->outfile,
 					O_CREAT | O_APPEND | O_WRONLY, 0644);
 		}
-		path_cmd = get_cmd_path(pipex_var);
-		if (!path_cmd)
-		{
-			close(pipex_var->fd[1]);
-			close(pipex_var->fd[2]);
+		if (child_gestion(pipex_var))
 			return (1);
-		}
-		pipex_var->fd[0] = fork_pid(pipex_var, path_cmd);
-		free(path_cmd);
-		if (pipex_var->fd[0] == -1)
-			return (1);
-		if (!pipex_var->cmd->next)
-			return (1);
-		pipex_var->cmd = pipex_var->cmd->next;
 	}
 	return (0);
 }
