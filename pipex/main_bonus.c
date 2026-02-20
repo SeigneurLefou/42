@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 16:35:51 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/20 10:59:57 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static t_pipex	pipex_loop(int argc, char **argv, char **env)
 	pipex_var.outfile = argv[argc - 1];
 	init_pipex_bonus(argc, argv, &pipex_var);
 	pipex_var.env = env;
-	if (pipex_var.fd[0] == -1)
-		pipex_var.fd[0] = fake_fdin();
 	if (!strcmp(argv[1], "here_doc"))
 		execution_loop_here_doc(&pipex_var);
 	else
@@ -42,6 +40,7 @@ int	main(int argc, char **argv, char **env)
 	ft_cmdclear(pipex_var.cmd);
 	werror = wait_all_pid(&pipex_var);
 	exit_code = give_exit_code(werror);
-	perror(NULL);
+	if (errno)
+		perror(NULL);
 	exit(exit_code);
 }

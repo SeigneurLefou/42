@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:53:44 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 16:33:13 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/20 11:05:21 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,16 @@ t_cmd	*init_list_cmd(int argc, char **argv)
 
 void	init_pipex(int argc, char **argv, t_pipex *pipex_var)
 {
-	pipex_var->fd[0] = open(argv[1], O_RDONLY);
 	pipex_var->cmd = init_list_cmd(argc - 3, argv + 2);
+	pipex_var->fd[0] = open(argv[1], O_RDONLY);
+	if (pipex_var->fd[0] == -1)
+	{
+		pipex_var->fd[0] = fake_fdin();
+		pipex_var->cmd = pipex_var->cmd->next;
+	}
 	pipex_var->pid = ft_calloc(sizeof(int), argc - 2);
+	if (errno)
+		perror(NULL);
 }
 
 void	init_pipex_bonus(int argc, char **argv, t_pipex *pipex_var)
@@ -59,11 +66,17 @@ void	init_pipex_bonus(int argc, char **argv, t_pipex *pipex_var)
 	{
 		number_move_right_argv = 2;
 		pipex_var->fd[0] = open(argv[1], O_RDONLY);
-		if (pipex_var->fd[0] == -1)
-			pipex_var->fd[0] = fake_fdin();
+		if (errno)
+			perror(NULL);
 	}
 	pipex_var->cmd = init_list_cmd(argc - (number_move_right_argv + 1),
 			argv + number_move_right_argv);
+	if (pipex_var->fd[0] == -1)
+	{
+		pipex_var->fd[0] = fake_fdin();
+		if (pipex_var->cmd && pipex_var->cmd->next)
+			pipex_var->cmd = pipex_var->cmd->next;
+	}
 	pipex_var->pid = ft_calloc(sizeof(int),
 			argc - (number_move_right_argv));
 }

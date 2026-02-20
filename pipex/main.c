@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:46:17 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 16:34:34 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/20 10:04:15 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv, char **env)
 	ft_cmdclear(pipex_var.cmd);
 	werror = wait_all_pid(&pipex_var);
 	exit_code = give_exit_code(werror);
-	perror(NULL);
+	if (errno)
+		perror(NULL);
 	exit(exit_code);
 }

@@ -6,7 +6,7 @@
 /*   By: lchamard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 17:46:01 by lchamard          #+#    #+#             */
-/*   Updated: 2026/02/19 17:01:22 by lchamard         ###   ########.fr       */
+/*   Updated: 2026/02/20 10:56:29 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*get_env(t_pipex *pipex_var, char *var)
 		i++;
 	var_content = ft_calloc(sizeof(char), ft_strlen(pipex_var->env[i])
 			- len_var_name);
+	if (errno)
+		perror(NULL);
 	var_content = ft_strcpy(var_content, &pipex_var->env[i][len_var_name + 1]);
 	return (var_content);
 }
@@ -46,19 +48,21 @@ char	*get_cmd_path(t_pipex *pipex_var)
 	char	*cmd_path;
 	int		i;
 
-	if (access(pipex_var->cmd->cmd_name, X_OK) != -1)
+	if (!pipex_var->cmd->cmd_name
+		|| access(pipex_var->cmd->cmd_name, X_OK) != -1)
 		return (pipex_var->cmd->cmd_name);
 	path = get_env(pipex_var, "PATH");
 	splited_path = ft_split(path, ':');
 	free(path);
 	i = 0;
-	while (splited_path[i])
+	while (splited_path && splited_path[i])
 	{
 		cmd_path = ft_strjoin(splited_path[i++], "/");
 		cmd_path = ft_strjoin(cmd_path, pipex_var->cmd->cmd_name);
-		if (access(cmd_path, X_OK) != -1)
+		if (!access(cmd_path, X_OK | F_OK))
 			break ;
 		free(cmd_path);
+		cmd_path = NULL;
 	}
 	errno = 0;
 	cmd_path = ft_free_path(cmd_path, splited_path, i);
