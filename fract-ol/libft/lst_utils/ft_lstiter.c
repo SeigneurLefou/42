@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 void	ft_lstiter(t_list **lst, void (*f)(long))
 {

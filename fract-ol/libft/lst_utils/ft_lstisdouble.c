@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 int	ft_lstisdouble(t_list **numbers)
 {

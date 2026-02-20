@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/22 15:00:34 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 int	ft_putendl_fd(char *str, int fd)
 {

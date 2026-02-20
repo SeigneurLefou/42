@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 static int	ft_count(char const *s, char c)
 {

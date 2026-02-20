@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 char	*ft_strcat(char *dest, char *src)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 int	ft_putnbrbase_fd(size_t nb, char *base, int fd)
 {

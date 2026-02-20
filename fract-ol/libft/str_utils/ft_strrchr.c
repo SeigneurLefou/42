@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/17 17:28:24 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 char	*ft_strrchr(char *s, int c)
 {

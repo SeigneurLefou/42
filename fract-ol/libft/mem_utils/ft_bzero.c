@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 12:07:42 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 void	ft_bzero(void *s, size_t n)
 {

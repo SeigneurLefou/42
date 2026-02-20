@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/27 10:07:04 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

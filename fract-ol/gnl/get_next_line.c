@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 char	*join_line_with_previous_line(char	*buffer, char *line)
 {

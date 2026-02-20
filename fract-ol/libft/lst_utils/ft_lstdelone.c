@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 void	ft_lstdelone(t_list **lst, void (*del)(long))
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 int	ft_put_unsigned_nbr_fd(unsigned int nb, int fd)
 {

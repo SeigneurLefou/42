@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 char	*ft_strnjoin(char *s1, char *s2, size_t size)
 {

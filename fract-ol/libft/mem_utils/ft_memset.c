@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/21 15:56:04 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

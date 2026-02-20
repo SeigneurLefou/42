@@ -9,7 +9,7 @@
 /*   Updated: 2026/02/12 11:19:27 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

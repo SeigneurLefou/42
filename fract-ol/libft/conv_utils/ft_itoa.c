@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 16:07:39 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 static int	ft_count(int nb)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
 t_list	*ft_lstmap(t_list **lst, long (*f)(long), void (*del)(long))
 {

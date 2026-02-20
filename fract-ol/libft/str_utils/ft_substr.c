@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/28 15:10:05 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

@@ -9,7 +9,7 @@
 /*   Updated: 2025/10/27 10:03:27 by lchamard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "pipex.h"
+#include "fractol.h"
 
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {

@@ -86,7 +86,7 @@ SRC = $(COMP)ft_isascii.c\
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
 $(NAME) : $(OBJ) main.c
-	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) MacroLibx/libmlx.so -o $(NAME)
 	@echo "BINARY : $(NAME)"
 
 $(BUILD)%.o : %.c
@@ -102,13 +102,18 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(PIP)
 	@mkdir -p $(BUILD)$(GNL)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "CC $<\n\t> $@"
+	@echo << EOF
+	"CC $<
+		> $@"
 
-re : fclean all bonus
+all : macrolibx $(NAME) 
 
-bonus : $(BONUS)
+re : fclean all
 
-all : $(NAME) 
+macrolibx:
+	@rm -Rf minilibx-linux
+	@git clone https://github.com/42Paris/minilibx-linux.git
+	@./minilibx-linux/configure
 
 clean :
 	@rm -Rf $(BUILD)
@@ -118,7 +123,5 @@ clean :
 fclean : clean
 	@rm -f $(NAME)
 	@echo "DELETE : $(NAME)"
-	@rm -f $(BONUS)
-	@echo "DELETE : $(BONUS)"
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
