@@ -2,7 +2,8 @@ NAME = pipex
 CC = cc
 BUILD = build/
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDES = -Iincludes
+MLX = minilibx-linux
+INCLUDES = -Iincludes -I$(MLX)
 
 # DIRECTORY
 STR = libft/str_utils/
@@ -86,7 +87,7 @@ SRC = $(COMP)ft_isascii.c\
 OBJ = $(SRC:%.c=$(BUILD)%.o)
 
 $(NAME) : $(OBJ) main.c
-	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) MacroLibx/libmlx.so -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) main.c $(OBJ) -o $(NAME)
 	@echo "BINARY : $(NAME)"
 
 $(BUILD)%.o : %.c
@@ -102,18 +103,16 @@ $(BUILD)%.o : %.c
 	@mkdir -p $(BUILD)$(PIP)
 	@mkdir -p $(BUILD)$(GNL)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo << EOF
-	"CC $<
-		> $@"
+	@echo "CC $<\n\t> $@"
 
-all : macrolibx $(NAME) 
+all : minilibx $(NAME)
+
+minilibx:
+	@rm -Rf $(MLX)
+	git clone https://github.com/42Paris/minilibx-linux $(MLX)
+	cd $(MLX) && ./configure && cd ..
 
 re : fclean all
-
-macrolibx:
-	@rm -Rf minilibx-linux
-	@git clone https://github.com/42Paris/minilibx-linux.git
-	@./minilibx-linux/configure
 
 clean :
 	@rm -Rf $(BUILD)
@@ -123,5 +122,7 @@ clean :
 fclean : clean
 	@rm -f $(NAME)
 	@echo "DELETE : $(NAME)"
+	@rm -Rf $(MLX)
+	@echo "DELETE : $(MLX)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean minilibx fclean re
